@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
-import Error from "../pages/Error";
+import Error from "../pages/404";
 import Header from "./Header";
 import Footer from "./Footer";
 

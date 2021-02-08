@@ -1,8 +1,9 @@
 const initialState = {
-  hamburgerStatus: 'closed'
+  hamburgerStatus: 'closed',
+  
 }
 
-export default function landingPageReducer(state=initialState, action) {
+export default function hamburgerReducer(state=initialState, action) {
   switch(action.type) {
     case 'TOGGLE_HAMBURGER': {
       return {

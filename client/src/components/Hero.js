@@ -52,7 +52,7 @@ const Hero = () => {
       <TextWrapper1>
         <Para1>Free shipping on all orders over $50.</Para1>
       </TextWrapper1>
-      <Gif src={heroGif}/>
+      <Gif src={heroGif} alt='gif of smart watch' />
       <TextWrapper2>
         <Para2>Select by body parts</Para2>
       </TextWrapper2>

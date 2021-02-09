@@ -5,6 +5,8 @@ import Error from "../pages/404";
 import Header from "./Header";
 import Footer from "./Footer";
 
+import GlobalStyles from "./GlobalStyles";
+
 function App() {
   const [bacon, setBacon] = useState(null);
 
@@ -16,6 +18,7 @@ function App() {
 
   return (
     <>
+      <GlobalStyles />
       <Header />
       <Router>
         <Switch>

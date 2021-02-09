@@ -1,14 +1,15 @@
-import React from 'react'
+import React from "react";
 
-import Hero from '../components/Hero';
+import Hero from "../components/Hero";
+import StoreComponent from "../components/StoreComponent";
 
 const LandingPage = () => {
-  return (
-    <div>
-      <Hero />
-      <div style={{height: '100vh'}}></div> {/* To be removed once we have more contents */}
-    </div>
-  )
-}
+    return (
+        <div>
+            <Hero />
+            <StoreComponent />
+        </div>
+    );
+};
 
-export default LandingPage
+export default LandingPage;

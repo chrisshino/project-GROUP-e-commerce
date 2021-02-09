@@ -1,21 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import { themeVars } from './GlobalStyles';
 
 const CompanyName = styled.div`
     font-family: 'Oswald', sans-serif;
     font-weight: bold;
-    font-size: 36px;
-    color: black;
 
     .yellow {
         color: #FFD116;
+        font-family: 'Oswald', sans-serif;
     }
 `;
 
-const Logo = () => {
+export const LogoBlack = () => {
     return (
-        <CompanyName>WEAR<span className='yellow'>LAB</span></CompanyName>
+        <CompanyName style={{color: `${themeVars.black}`, fontSize: '36px'}}>WEAR<span className='yellow'>LAB</span></CompanyName>
     );
 }
 
-export default Logo;
+export const LogoWhite = () => {
+    return (
+        <CompanyName style={{color: `${themeVars.white}`, fontSize: '28px'}}>WEAR<span className='yellow'>LAB</span></CompanyName>
+    );
+}

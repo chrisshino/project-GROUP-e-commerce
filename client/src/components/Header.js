@@ -4,7 +4,7 @@ import { themeVars } from "./GlobalStyles";
 
 import { FiMenu, FiShoppingCart } from 'react-icons/fi';
 
-import Logo from './Logo';
+import { LogoBlack } from './Logo';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -57,7 +57,7 @@ const Header = () => {
   return (
     <Wrapper>
       <div style={firstRowStyle}>
-        <Logo />
+        <LogoBlack />
         <div>
           <HeaderBtn><FiShoppingCart style={cartStyle}/></HeaderBtn>
           <HeaderBtn><FiMenu style={menuStyle}/></HeaderBtn>

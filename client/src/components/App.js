@@ -19,8 +19,8 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <Header />
       <Router>
+        <Header />
         <Switch>
           <Route exact path="/">
             <LandingPage />
@@ -29,8 +29,8 @@ function App() {
             <Error />
           </Route>
         </Switch>
+        <Footer />
       </Router>
-      <Footer />
     </>
   );
 }

@@ -5,7 +5,7 @@ import { FiChevronUp } from "react-icons/fi";
 import { LogoWhite } from './Logo';
 import { themeVars } from "./GlobalStyles";
 
-const FooterWrapper = styled.div`
+const FooterWrapper = styled.footer`
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -33,6 +33,13 @@ const StyledLink = styled(Link)`
     text-decoration: none;
 `;
 
+const CopyRight = styled.div`
+    font-size: 10px;
+    color: ${themeVars.white};
+    position: relative;
+    top: -5px;
+`;
+
 const Footer = () => {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -40,8 +47,13 @@ const Footer = () => {
     return (
         <>
             <FooterWrapper>
-                <LogoWhite />
-                <StyledLink>About Us</StyledLink>   {/* Needs to add link later */}
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                    <LogoWhite />
+                    <CopyRight>All rights reserved. ©2021</CopyRight>
+                </div>
+                <div>
+                    <StyledLink>About Us</StyledLink>   {/* Needs to add link later */}
+                </div>
             </FooterWrapper>
             <UpBar onClick={scrollToTop}>
                 <FiChevronUp style={{ fontSize: "1.5rem" }}></FiChevronUp>

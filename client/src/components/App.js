@@ -4,7 +4,7 @@ import LandingPage from "../pages/LandingPage";
 import Error from "../pages/404";
 import Header from "./Header";
 import Footer from "./Footer";
-import About from "./About";
+import About from "../pages/About";
 
 import GlobalStyles from "./GlobalStyles";
 

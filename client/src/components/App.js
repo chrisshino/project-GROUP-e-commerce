@@ -8,25 +8,26 @@ import Footer from "./Footer";
 import GlobalStyles from "./GlobalStyles";
 
 function App() {
- 
-
-  return (
-    <>
-      <GlobalStyles />
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route exact path="/error">
-            <Error />
-          </Route>
-        </Switch>
-        <Footer />
-      </Router>
-    </>
-  );
+    return (
+        <>
+            <GlobalStyles />
+            <Router>
+                <Header />
+                <Switch>
+                    <Route exact path="/">
+                        <LandingPage />
+                    </Route>
+                    <Route exact path="/error">
+                        <Error />
+                    </Route>
+                    <Route exact path="/about">
+                        <Error />
+                    </Route>
+                </Switch>
+                <Footer />
+            </Router>
+        </>
+    );
 }
 
 export default App;

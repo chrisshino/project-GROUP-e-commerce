@@ -8,13 +8,7 @@ import Footer from "./Footer";
 import GlobalStyles from "./GlobalStyles";
 
 function App() {
-  const [bacon, setBacon] = useState(null);
-
-  useEffect(() => {
-    fetch("/bacon")
-      .then((res) => res.json())
-      .then((data) => setBacon(data));
-  }, []);
+ 
 
   return (
     <>

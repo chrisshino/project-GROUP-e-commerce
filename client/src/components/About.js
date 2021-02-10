@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 
 import chris from "../assets/chris.png";
+import zayd from "../assets/zayd.png";
 import aya from "../assets/aya.jpg";
 import github from "../assets/GitHub-Mark-120px-plus.png";
 
@@ -86,7 +87,7 @@ const About = () => {
             <SelfIntro>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</SelfIntro>
         </ProfileContainer>
         <ProfileContainer>
-            <Photo style={{border: `5px solid ${themeVars.blue}`}} src={chris} alt="photo of Zayd Ben Osmane" />
+            <Photo style={{border: `5px solid ${themeVars.blue}`}} src={zayd} alt="photo of Zayd Ben Osmane" />
             <PersonalInfoContainer>
                 <Name style={{color: `${themeVars.yellow}`}}>Zayd Ben Osmane</Name>
                 <div style={{display: "flex", justifyContent: "center"}}>

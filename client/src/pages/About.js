@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { themeVars } from "./GlobalStyles";
+import { themeVars } from "../components/GlobalStyles";
 
 import chris from "../assets/chris.png";
 import zayd from "../assets/zayd.png";

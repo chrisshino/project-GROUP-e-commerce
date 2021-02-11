@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FiChevronUp } from "react-icons/fi";
-import { LogoWhite } from './Logo';
+import { LogoWhite } from "./Logo";
 import { themeVars } from "./GlobalStyles";
 
 const FooterWrapper = styled.footer`
@@ -21,7 +21,11 @@ const UpBar = styled.div`
     flex-direction: column;
     align-items: center;
     color: white;
-    background: linear-gradient(to bottom, ${themeVars.black} 0%, ${themeVars.midnightGreen} 100%);
+    background: linear-gradient(
+        to bottom,
+        ${themeVars.black} 0%,
+        ${themeVars.midnightGreen} 100%
+    );
     padding: 1rem;
     font-size: 0.8rem;
     cursor: pointer;
@@ -43,16 +47,18 @@ const CopyRight = styled.div`
 const Footer = () => {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
+        console.log("working");
     };
     return (
         <>
             <FooterWrapper>
-                <div style={{display: 'flex', flexDirection: 'column'}}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
                     <LogoWhite />
                     <CopyRight>All rights reserved. ©2021</CopyRight>
                 </div>
                 <div>
-                    <StyledLink>About Us</StyledLink>   {/* Needs to add link later */}
+                    <StyledLink to={"/about"}>About Us</StyledLink>
+                    {/* Needs to add link later */}
                 </div>
             </FooterWrapper>
             <UpBar onClick={scrollToTop}>

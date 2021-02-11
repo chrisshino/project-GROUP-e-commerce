@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 import { getStoreState } from "../reducers/hamburger-reducer";
 import { themeVars } from "./GlobalStyles";
 import { toggleHamburger } from "../actions";
@@ -9,6 +10,7 @@ import { useSelector } from "react-redux";
 import { FiMenu, FiShoppingCart, FiXCircle } from "react-icons/fi";
 import { useHistory } from "react-router-dom";
 import Hamburger from "./Hamburger";
+
 import { LogoBlack } from "./Logo";
 
 const Wrapper = styled.div`
@@ -16,8 +18,10 @@ const Wrapper = styled.div`
     height: 93px;
     display: flex;
     flex-direction: column;
+
     position: relative;
     z-index: 1;
+
 `;
 
 const HeaderBtn = styled.button`
@@ -60,29 +64,31 @@ const menuStyle = {
     top: "8px",
 };
 
-const Header = () => {
-    let history = useHistory();
-    const handleClick = () => {
-        history.push("/");
-    };
+const Logo = styled.a`
+    text-decoration: none;
+`;
 
-    const dispatch = useDispatch();
+const Header = () => {
+  const dispatch = useDispatch();
     const state = useSelector(getStoreState).hamburgerReducer.hamburgerStatus;
 
     const transitions = useTransition(state, null, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
-    });
-
+      
     return (
         <Wrapper>
             <div style={firstRowStyle}>
-                <LogoBlack onClick={handleClick} />
+                <Logo href="/">
+                    <LogoBlack />
+                </Logo>
+
                 <div>
                     <HeaderBtn>
                         <FiShoppingCart style={cartStyle} />
                     </HeaderBtn>
+
                     <HeaderBtn onClick={() => dispatch(toggleHamburger())}>
                         {state == false ? (
                             <FiMenu style={menuStyle} />

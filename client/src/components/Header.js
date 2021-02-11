@@ -1,8 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { themeVars } from "./GlobalStyles";
 
-import { FiMenu, FiShoppingCart } from "react-icons/fi";
+import { getStoreState } from "../reducers/hamburger-reducer";
+import { themeVars } from "./GlobalStyles";
+import { toggleHamburger } from "../actions";
+import { useDispatch } from "react-redux";
+import { useTransition, animated } from "react-spring";
+import { useSelector } from "react-redux";
+import { FiMenu, FiShoppingCart, FiXCircle } from "react-icons/fi";
+import { useHistory } from "react-router-dom";
+import Hamburger from "./Hamburger";
 
 import { LogoBlack } from "./Logo";
 
@@ -11,6 +18,10 @@ const Wrapper = styled.div`
     height: 93px;
     display: flex;
     flex-direction: column;
+
+    position: relative;
+    z-index: 1;
+
 `;
 
 const HeaderBtn = styled.button`
@@ -58,22 +69,43 @@ const Logo = styled.a`
 `;
 
 const Header = () => {
+  const dispatch = useDispatch();
+    const state = useSelector(getStoreState).hamburgerReducer.hamburgerStatus;
+
+    const transitions = useTransition(state, null, {
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+      
     return (
         <Wrapper>
             <div style={firstRowStyle}>
                 <Logo href="/">
                     <LogoBlack />
                 </Logo>
+
                 <div>
                     <HeaderBtn>
                         <FiShoppingCart style={cartStyle} />
                     </HeaderBtn>
-                    <HeaderBtn>
-                        <FiMenu style={menuStyle} />
+
+                    <HeaderBtn onClick={() => dispatch(toggleHamburger())}>
+                        {state == false ? (
+                            <FiMenu style={menuStyle} />
+                        ) : (
+                            <FiXCircle style={menuStyle} />
+                        )}
                     </HeaderBtn>
                 </div>
             </div>
             <Catchline>Tech. Lifestyle. Fitness.</Catchline>
+            {transitions.map(({ item, key, props }) =>
+                item ? (
+                    <animated.div style={props}><Hamburger/></animated.div>
+                ) : (
+                    <animated.div style={props}></animated.div>
+                )
+            )}
         </Wrapper>
     );
 };

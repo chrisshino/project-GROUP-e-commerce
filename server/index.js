@@ -1,7 +1,6 @@
 "use strict";
 const companies = require("./data/companies.json");
 const items = require("./data/items.json");
-console.log(typeof items);
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -51,7 +50,6 @@ express()
             const random = Math.floor(Math.random() * getAllItems.length);
             top5.push(getAllItems[random]);
         }
-
         try {
             res.status(200).send({
                 status: 200,
@@ -87,7 +85,43 @@ express()
         }
     })
 
-    
+    .get("/product/:id", (req, res) => {
+        const getAllItems = items;
+        const id = parseInt(req.params.id, 10);
+        const filteredBodyParts = getAllItems.filter((item) => item._id === id);
+        try {
+            res.status(200).send({
+                status: 200,
+                data: filteredBodyParts,
+                message: "HERE IS YOUR PRODUCTS!",
+            });
+        } catch (e) {
+            res.status(404).send({
+                status: 404,
+                message: e,
+            });
+        }
+    })
+
+    .get("/company/:id", (req, res) => {
+        const getAllCompanies = companies;
+        const id = parseInt(req.params.id, 10);
+        const company = getAllCompanies.filter((item) => item._id === id);
+        console.log(company);
+
+        try {
+            res.status(200).send({
+                status: 200,
+                data: company,
+                message: "HERE IS YOUR COMPANY!",
+            });
+        } catch (e) {
+            res.status(404).send({
+                status: 404,
+                message: e,
+            });
+        }
+    })
 
     .listen(PORT, () => console.info(`Listening on port ${PORT}`));
 

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getStoreState } from "../reducers/hamburger-reducer";
 import LandingPage from "../pages/LandingPage";
+import Career from "../pages/Career";
 import Error from "../pages/404";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -28,6 +29,9 @@ function App() {
                    </Route>
                    <Route exact path="/about">
                     <About />
+                   </Route>
+                   <Route exact path="/career">
+                    <Career />
                    </Route>
                    <Route exact path="/error">
                     <Error />

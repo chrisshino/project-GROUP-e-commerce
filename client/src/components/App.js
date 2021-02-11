@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useParams,
+} from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
 import Error from "../pages/404";
 import Header from "./Header";
 import Footer from "./Footer";
 import BigProduct from "./BigProduct";
+import Store from "../pages/Store";
 
 import GlobalStyles from "./GlobalStyles";
 
@@ -20,6 +26,9 @@ function App() {
                     </Route>
                     <Route exact path="/error">
                         <Error />
+                    </Route>
+                    <Route path="/products/:bodypart">
+                        <Store />
                     </Route>
                     <Route path="/product/:id">
                         <BigProduct />

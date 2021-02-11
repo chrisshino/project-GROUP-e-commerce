@@ -22,9 +22,9 @@ const StoreComponent = () => {
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
-                <Element to={"/products/Arm"}>
-                    <Title>Arm</Title>
-                    <Svg src={Bodybuilding} alt="Arm  products" />
+                <Element to={"/products/Arms"}>
+                    <Title>Arms</Title>
+                    <Svg src={Bodybuilding} alt="Arms  products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.blue}` }}>
@@ -40,9 +40,9 @@ const StoreComponent = () => {
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.caribbeanGreen}` }}>
-                <Element to={"/products/Hand"}>
-                    <Title>Hand</Title>
-                    <Svg src={Hand} alt="Hand products" />
+                <Element to={"/products/Hands"}>
+                    <Title>Hands</Title>
+                    <Svg src={Hand} alt="Hands products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
@@ -97,6 +97,7 @@ const Element = styled(Link)`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 `;
 
 const Title = styled.p`

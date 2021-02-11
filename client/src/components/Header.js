@@ -18,10 +18,8 @@ const Wrapper = styled.div`
     height: 93px;
     display: flex;
     flex-direction: column;
-
     position: relative;
     z-index: 1;
-
 `;
 
 const HeaderBtn = styled.button`
@@ -69,14 +67,15 @@ const Logo = styled.a`
 `;
 
 const Header = () => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const state = useSelector(getStoreState).hamburgerReducer.hamburgerStatus;
 
     const transitions = useTransition(state, null, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
-      
+    });
+
     return (
         <Wrapper>
             <div style={firstRowStyle}>
@@ -101,7 +100,9 @@ const Header = () => {
             <Catchline>Tech. Lifestyle. Fitness.</Catchline>
             {transitions.map(({ item, key, props }) =>
                 item ? (
-                    <animated.div style={props}><Hamburger/></animated.div>
+                    <animated.div style={props}>
+                        <Hamburger />
+                    </animated.div>
                 ) : (
                     <animated.div style={props}></animated.div>
                 )

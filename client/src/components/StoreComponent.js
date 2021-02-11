@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
+import { Link } from "react-router-dom";
 
 import Band from "../assets/body-parts/band.svg";
 import Bodybuilding from "../assets/body-parts/bodybuilding.svg";
@@ -15,49 +16,49 @@ const StoreComponent = () => {
     return (
         <Main>
             <BoyPart style={{ backgroundColor: `${themeVars.caribbeanGreen}` }}>
-                <Element>
+                <Element to={"/products/Wrist"}>
                     <Title>Wrist</Title>
                     <Svg src={Band} alt="Wrist products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
-                <Element>
+                <Element to={"/products/Arm"}>
                     <Title>Arm</Title>
                     <Svg src={Bodybuilding} alt="Arm  products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.blue}` }}>
-                <Element>
+                <Element to={"/products/Head"}>
                     <Title>Head</Title>
                     <Svg src={Manhair} alt="Head products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.pink}` }}>
-                <Element>
+                <Element to={"/products/Waist"}>
                     <Title>Waist</Title>
                     <Svg src={Waist} alt="Waist products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.caribbeanGreen}` }}>
-                <Element>
+                <Element to={"/products/Hand"}>
                     <Title>Hand</Title>
                     <Svg src={Hand} alt="Hand products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
-                <Element>
+                <Element to={"/products/Feet"}>
                     <Title>Feet</Title>
                     <Svg src={RunningShoes} alt="Feet products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.blue}` }}>
-                <Element>
+                <Element to={"/products/Neck"}>
                     <Title>Neck</Title>
                     <Svg src={Neck} alt="Neck products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.pink}` }}>
-                <Element>
+                <Element to={"/products/Torso"}>
                     <Title>Torso</Title>
                     <Svg src={Torso} alt="Torso products" />
                 </Element>
@@ -86,7 +87,7 @@ const BoyPart = styled.div`
     max-height: 50vw;
 `;
 
-const Element = styled.div`
+const Element = styled(Link)`
     width: calc(50vw - 40px);
     height: calc(50vw - 40px);
     margin: 20px;

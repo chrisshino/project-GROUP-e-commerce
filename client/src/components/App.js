@@ -4,6 +4,7 @@ import LandingPage from "../pages/LandingPage";
 import Error from "../pages/404";
 import Header from "./Header";
 import Footer from "./Footer";
+import BigProduct from "./BigProduct";
 
 import GlobalStyles from "./GlobalStyles";
 
@@ -19,6 +20,9 @@ function App() {
                     </Route>
                     <Route exact path="/error">
                         <Error />
+                    </Route>
+                    <Route path="/product/:id">
+                        <BigProduct />
                     </Route>
                     <Route exact path="/about">
                         <Error />

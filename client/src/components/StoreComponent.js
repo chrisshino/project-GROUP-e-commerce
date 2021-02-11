@@ -17,73 +17,62 @@ const StoreComponent = () => {
             <BoyPart style={{ backgroundColor: `${themeVars.caribbeanGreen}` }}>
                 <Element>
                     <Title>Wrist</Title>
-
-                    <Svg src={Band} alt="gif of smart watch" />
+                    <Svg src={Band} alt="Wrist products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
                 <Element>
                     <Title>Arm</Title>
-
-                    <Svg src={Bodybuilding} alt="gif of smart watch" />
+                    <Svg src={Bodybuilding} alt="Arm  products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.blue}` }}>
                 <Element>
                     <Title>Head</Title>
-
-                    <Svg src={Manhair} alt="gif of smart watch" />
+                    <Svg src={Manhair} alt="Head products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.pink}` }}>
                 <Element>
                     <Title>Waist</Title>
-
-                    <Svg src={Waist} alt="gif of smart watch" />
+                    <Svg src={Waist} alt="Waist products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.caribbeanGreen}` }}>
                 <Element>
                     <Title>Hand</Title>
-
-                    <Svg src={Hand} alt="gif of smart watch" />
+                    <Svg src={Hand} alt="Hand products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
                 <Element>
                     <Title>Feet</Title>
-
-                    <Svg src={RunningShoes} alt="gif of smart watch" />
+                    <Svg src={RunningShoes} alt="Feet products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.blue}` }}>
                 <Element>
                     <Title>Neck</Title>
-
-                    <Svg src={Neck} alt="gif of smart watch" />
+                    <Svg src={Neck} alt="Neck products" />
                 </Element>
             </BoyPart>
             <BoyPart style={{ backgroundColor: `${themeVars.pink}` }}>
                 <Element>
                     <Title>Torso</Title>
-
-                    <Svg src={Torso} alt="gif of smart watch" />
+                    <Svg src={Torso} alt="Torso products" />
                 </Element>
             </BoyPart>
         </Main>
     );
 };
 
-// `${themeVars.blue}`;
-
 export default StoreComponent;
 
 const Main = styled.div`
     position: relative;
-    top: -25px;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: -25px;
+    height: 100%;
 `;
 
 const BoyPart = styled.div`
@@ -91,25 +80,22 @@ const BoyPart = styled.div`
     margin: 0;
     padding: 0;
     position: relative;
-    min-width: 50%;
-    &:after {
-        content: "";
-        display: block;
-        padding-bottom: 69.5%;
-    }
-`;
-
-const Svg = styled.img`
-    position: absolute;
-    width: 60%;
-    padding: 9%;
+    min-width: 50vw;
+    min-height: 50vw;
+    max-width: 50vw;
+    max-height: 50vw;
 `;
 
 const Element = styled.div`
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
+    width: calc(50vw - 40px);
+    height: calc(50vw - 40px);
     margin: 20px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Title = styled.p`
@@ -117,4 +103,9 @@ const Title = styled.p`
     color: ${themeVars.black};
     font-size: 20px;
     font-weight: 700;
+`;
+
+const Svg = styled.img`
+    width: 80%;
+    margin: 0;
 `;

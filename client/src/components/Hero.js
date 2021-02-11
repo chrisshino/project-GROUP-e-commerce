@@ -21,9 +21,9 @@ const TextWrapper2 = styled.div`
     ${commonWrapperCSS};
     height: 56px;
     background-color: ${themeVars.midnightGreen};
-    align-items: flex-end;
-    position: relative;
-    top: -25px;
+    align-items: center;
+    margin-top: -10px;
+    padding: 0;
 `;
 
 const Para1 = styled.p`
@@ -36,8 +36,6 @@ const Para2 = styled.p`
     color: ${themeVars.white};
     font-size: 20px;
     font-weight: 700;
-    position: relative;
-    top: -10px;
 `;
 
 const Gif = styled.img`

@@ -10,6 +10,7 @@ export default function cartReducer(state = initialState, action) {
                         [action.item._id]: {
                             ...action.item,
                             quantity: 1,
+                            numInStock: action.item.numInStock - 1,
                         },
                     };
                 } else if (state[action.item._id]) {
@@ -19,6 +20,8 @@ export default function cartReducer(state = initialState, action) {
                             ...action.item,
                             quantity:
                                 Number(state[action.item._id].quantity) + 1,
+                            numInStock:
+                                Number(state[action.item._id].numInStock) - 1,
                         },
                     };
                 }
@@ -28,3 +31,7 @@ export default function cartReducer(state = initialState, action) {
             return state;
     }
 }
+
+export const getStoreState = (state) => {
+    return state;
+};

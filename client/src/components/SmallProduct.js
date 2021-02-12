@@ -2,8 +2,16 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { addToCart } from "../actions";
 
 const SmallProduct = ({ item, i }) => {
+    const dispatch = useDispatch();
+    const addToCartFunc = (item) => {
+        dispatch(addToCart(item));
+    };
+
     let warning = "normal";
     let disabled = false;
 
@@ -23,7 +31,11 @@ const SmallProduct = ({ item, i }) => {
                         stock:{" "}
                         <Span className={warning}>{item.numInStock}</Span>
                     </Stock>
-                    <Add disabled={disabled} className={disabled}>
+                    <Add
+                        disabled={disabled}
+                        className={disabled}
+                        onClick={() => addToCartFunc(item)}
+                    >
                         Add
                     </Add>
                 </ItemFooter>

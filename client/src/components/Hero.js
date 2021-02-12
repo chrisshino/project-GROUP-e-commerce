@@ -23,7 +23,7 @@ const TextWrapper2 = styled.div`
     background-color: ${themeVars.midnightGreen};
     align-items: center;
     margin-top: -10px;
-    padding: 0;
+    padding-top: 10px;
 `;
 
 const Para1 = styled.p`

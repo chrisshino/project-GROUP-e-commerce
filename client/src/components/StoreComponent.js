@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import Band from "../assets/body-parts/band.svg";
 import Bodybuilding from "../assets/body-parts/bodybuilding.svg";
@@ -13,56 +13,98 @@ import RunningShoes from "../assets/body-parts/running-shoes.svg";
 import Torso from "../assets/body-parts/female.svg";
 
 const StoreComponent = () => {
+    let history = useHistory();
+
     return (
         <Main>
-            <BoyPart style={{ backgroundColor: `${themeVars.caribbeanGreen}` }}>
-                <Element to={"/products/Wrist"}>
+            <BodyPart style={{ backgroundColor: `${themeVars.caribbeanGreen}` }}>
+                <Element 
+                    onClick={() => {
+                        history.push("/products/Wrist");
+                        window.scrollTo(0,0);
+                    }}
+                >
                     <Title>Wrist</Title>
                     <Svg src={Band} alt="Wrist products" />
                 </Element>
-            </BoyPart>
-            <BoyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
-                <Element to={"/products/Arms"}>
+            </BodyPart>
+            <BodyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
+                <Element 
+                    onClick={() => {
+                        history.push("/products/Arms");
+                        window.scrollTo(0,0);
+                    }}
+                >
                     <Title>Arms</Title>
                     <Svg src={Bodybuilding} alt="Arms  products" />
                 </Element>
-            </BoyPart>
-            <BoyPart style={{ backgroundColor: `${themeVars.blue}` }}>
-                <Element to={"/products/Head"}>
+            </BodyPart>
+            <BodyPart style={{ backgroundColor: `${themeVars.blue}` }}>
+                <Element 
+                    onClick={() => {
+                        history.push("/products/Head");
+                        window.scrollTo(0,0);
+                    }}
+                >
                     <Title>Head</Title>
                     <Svg src={Manhair} alt="Head products" />
                 </Element>
-            </BoyPart>
-            <BoyPart style={{ backgroundColor: `${themeVars.pink}` }}>
-                <Element to={"/products/Waist"}>
+            </BodyPart>
+            <BodyPart style={{ backgroundColor: `${themeVars.pink}` }}>
+                <Element 
+                    onClick={() => {
+                        history.push("/products/Waist");
+                        window.scrollTo(0,0);
+                    }}
+                >
                     <Title>Waist</Title>
                     <Svg src={Waist} alt="Waist products" />
                 </Element>
-            </BoyPart>
-            <BoyPart style={{ backgroundColor: `${themeVars.caribbeanGreen}` }}>
-                <Element to={"/products/Hands"}>
+            </BodyPart>
+            <BodyPart style={{ backgroundColor: `${themeVars.caribbeanGreen}` }}>
+                <Element
+                    onClick={() => {
+                        history.push("/products/Hands");
+                        window.scrollTo(0,0);
+                    }}
+                >
                     <Title>Hands</Title>
                     <Svg src={Hand} alt="Hands products" />
                 </Element>
-            </BoyPart>
-            <BoyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
-                <Element to={"/products/Feet"}>
+            </BodyPart>
+            <BodyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
+                <Element 
+                    onClick={() => {
+                        history.push("/products/Feet");
+                        window.scrollTo(0,0);
+                    }}
+                >
                     <Title>Feet</Title>
                     <Svg src={RunningShoes} alt="Feet products" />
                 </Element>
-            </BoyPart>
-            <BoyPart style={{ backgroundColor: `${themeVars.blue}` }}>
-                <Element to={"/products/Neck"}>
+            </BodyPart>
+            <BodyPart style={{ backgroundColor: `${themeVars.blue}` }}>
+                <Element 
+                    onClick={() => {
+                        history.push("/products/Neck");
+                        window.scrollTo(0,0);
+                    }}
+                >
                     <Title>Neck</Title>
                     <Svg src={Neck} alt="Neck products" />
                 </Element>
-            </BoyPart>
-            <BoyPart style={{ backgroundColor: `${themeVars.pink}` }}>
-                <Element to={"/products/Torso"}>
+            </BodyPart>
+            <BodyPart style={{ backgroundColor: `${themeVars.pink}` }}>
+                <Element 
+                    onClick={() => {
+                        history.push("/products/Torso");
+                        window.scrollTo(0,0);
+                    }}
+                >
                     <Title>Torso</Title>
                     <Svg src={Torso} alt="Torso products" />
                 </Element>
-            </BoyPart>
+            </BodyPart>
         </Main>
     );
 };
@@ -76,7 +118,7 @@ const Main = styled.div`
     height: 100%;
 `;
 
-const BoyPart = styled.div`
+const BodyPart = styled.div`
     border: 0;
     margin: 0;
     padding: 0;
@@ -87,7 +129,7 @@ const BoyPart = styled.div`
     max-height: 50vw;
 `;
 
-const Element = styled(Link)`
+const Element = styled.button`
     width: calc(50vw - 40px);
     height: calc(50vw - 40px);
     margin: 20px;
@@ -98,6 +140,8 @@ const Element = styled(Link)`
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    border: none;
+    outline: none;
 `;
 
 const Title = styled.p`

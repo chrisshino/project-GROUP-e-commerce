@@ -18,7 +18,7 @@ const Store = () => {
                 setItems(data);
                 setLoaded(true);
             });
-    }, []);
+    }, [bodypart]);
 
     return (
         <Main>

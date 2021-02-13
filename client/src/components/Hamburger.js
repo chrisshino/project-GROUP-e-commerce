@@ -60,27 +60,51 @@ const BodyPartDiv = styled.button`
 const Hamburger = () => {
     const dispatch = useDispatch();
     let history = useHistory();
+    const handleBodyPartsBtnClick = (link) => {
+        dispatch(toggleHamburger(false));
+        history.push(link);
+    }
     const handleAbout = () => {
         dispatch(toggleHamburger(false));
-        history.push("/");
+        history.push("/about");
     };
     const handleCareer = () => {
-      dispatch(toggleHamburger(false));
-      history.push("/");
-  };
+        dispatch(toggleHamburger(false));
+        history.push("/career");
+    };
 
     return (
         <div style={hamburgerStyle}>
             <div style={{ color: `${themeVars.midnightGreen}`  }}>Item Category</div>
             <div style={bodyPartWrapper}>
-                <BodyPartDiv style={{backgroundColor:`${themeVars.caribbeanGreen}`}}>Wrist</BodyPartDiv>
-                <BodyPartDiv>Arm</BodyPartDiv>
-                <BodyPartDiv>Head</BodyPartDiv>
-                <BodyPartDiv style={{backgroundColor:`${themeVars.caribbeanGreen}`}}>Waist</BodyPartDiv>
-                <BodyPartDiv style={{backgroundColor:`${themeVars.caribbeanGreen}`}}>Hand</BodyPartDiv>
-                <BodyPartDiv>Feet</BodyPartDiv>
-                <BodyPartDiv>Neck</BodyPartDiv>
-                <BodyPartDiv style={{backgroundColor:`${themeVars.caribbeanGreen}`}}>Torso</BodyPartDiv>
+                <BodyPartDiv 
+                    style={{backgroundColor:`${themeVars.caribbeanGreen}`}}
+                    onClick={() => handleBodyPartsBtnClick("/products/Wrist")}
+                >
+                    Wrist
+                </BodyPartDiv>
+                <BodyPartDiv onClick={() => handleBodyPartsBtnClick("/products/Arms")}>Arm</BodyPartDiv>
+                <BodyPartDiv onClick={() => handleBodyPartsBtnClick("/products/Head")}>Head</BodyPartDiv>
+                <BodyPartDiv 
+                    style={{backgroundColor:`${themeVars.caribbeanGreen}`}}
+                    onClick={() => handleBodyPartsBtnClick("/products/Waist")}
+                >
+                    Waist
+                </BodyPartDiv>
+                <BodyPartDiv 
+                    style={{backgroundColor:`${themeVars.caribbeanGreen}`}}
+                    onClick={() => handleBodyPartsBtnClick("/products/Hands")}
+                >
+                    Hand
+                </BodyPartDiv>
+                <BodyPartDiv onClick={() => handleBodyPartsBtnClick("/products/Feet")}>Feet</BodyPartDiv>
+                <BodyPartDiv onClick={() => handleBodyPartsBtnClick("/products/Neck")}>Neck</BodyPartDiv>
+                <BodyPartDiv 
+                    style={{backgroundColor:`${themeVars.caribbeanGreen}`}}
+                    onClick={() => handleBodyPartsBtnClick("/products/Torso")}
+                >
+                    Torso
+                </BodyPartDiv>
             </div>
 
             <div style={innerDivStyle} onClick={handleAbout}>

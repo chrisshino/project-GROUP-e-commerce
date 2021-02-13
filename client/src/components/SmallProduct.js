@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { addToCart } from "../actions";
 
 const SmallProduct = ({ item, i }) => {
+    let history = useHistory();
     const dispatch = useDispatch();
     const addToCartFunc = (item) => {
         dispatch(addToCart(item));
     };
-
     let warning = "normal";
     let disabled = false;
 
@@ -21,7 +21,13 @@ const SmallProduct = ({ item, i }) => {
     }
 
     return (
-        <Item key={i} to={`/product/${item._id}`}>
+        <Item 
+            key={i} 
+            onClick={() => {
+                history.push(`/product/${item._id}`);
+                window.scrollTo(0,0);
+            }}
+        >
             <Img src={item.imageSrc} alt="Product image" />
             <ItemDetails>
                 <ItemName>{item.name}</ItemName>
@@ -46,7 +52,7 @@ const SmallProduct = ({ item, i }) => {
 
 export default SmallProduct;
 
-const Item = styled(Link)`
+const Item = styled.div`
     width: 90%;
     display: flex;
     margin: 5% auto;

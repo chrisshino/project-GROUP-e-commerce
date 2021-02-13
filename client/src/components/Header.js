@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { getStoreState } from "../reducers/hamburger-reducer";
 import { themeVars } from "./GlobalStyles";
@@ -8,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { useTransition, animated } from "react-spring";
 import { useSelector } from "react-redux";
 import { FiMenu, FiShoppingCart, FiXCircle } from "react-icons/fi";
-import { useHistory } from "react-router-dom";
 import Hamburger from "./Hamburger";
 
 import { LogoBlack } from "./Logo";
@@ -62,7 +62,7 @@ const menuStyle = {
     top: "8px",
 };
 
-const Logo = styled.a`
+const Logo = styled(Link)`
     text-decoration: none;
 `;
 
@@ -79,7 +79,7 @@ const Header = () => {
     return (
         <Wrapper>
             <div style={firstRowStyle}>
-                <Logo href="/">
+                <Logo exact to="/">
                     <LogoBlack />
                 </Logo>
 

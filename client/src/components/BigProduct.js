@@ -2,10 +2,20 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { ReactComponent as Loading } from "../assets/Spinner-1s-200px.svg";
+import { useSelector } from "react-redux";
+import { addToCart } from "../actions";
+import { getStoreState } from "../reducers/cart-reducer";
 
 const BigProduct = () => {
+    const dispatch = useDispatch();
     const { id } = useParams();
+    const state = useSelector(getStoreState).cartReducer[id];
+    console.log(state);
+    const addToCartFunc = (product) => {
+        dispatch(addToCart(product));
+    };
 
     const [product, setProduct] = useState([]);
     const [company, setCompany] = useState([]);
@@ -32,13 +42,10 @@ const BigProduct = () => {
         }
     }, [product, setProduct]);
 
-    console.log(Object.keys(product).length);
-    console.log(company.name);
-
     let warning = "normal";
     let disabled = false;
 
-    if (product.numInStock <= 0) {
+    if ((state && state.numInStock <= 0) || product.numInStock <= 0) {
         warning = "red";
         disabled = true;
     }
@@ -71,12 +78,15 @@ const BigProduct = () => {
                                     <Stock>
                                         stock:{" "}
                                         <Span className={warning}>
-                                            {product.numInStock}
+                                            {state
+                                                ? state.numInStock
+                                                : product.numInStock}
                                         </Span>
                                     </Stock>{" "}
                                     <Add
                                         disabled={disabled}
                                         className={disabled}
+                                        onClick={() => addToCartFunc(product)}
                                     >
                                         Add
                                     </Add>

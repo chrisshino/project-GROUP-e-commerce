@@ -29,29 +29,29 @@ function App() {
             <div style={state === true ? hideOverflow : null}>
                 <GlobalStyles />
                 <Router>
-                  <Header />
-                  <Switch>
-                   <Route exact path="/">
-                    <LandingPage />
-                   </Route>
-                   <Route path="/products/:bodypart">
-                    <Store />
-                   </Route>
-                    <Route path="/product/:id">
-                        <BigProduct />
-                    </Route>
-                   <Route exact path="/about">
-                    <About />
-                   </Route>
-                   <Route exact path="/career">
-                    <Career />
-                   </Route>
-                   <Route exact path="/error">
-                    <Error />
-                   </Route>
-                  </Switch>
-                  <Footer />
-                 </Router>
+                    <Header />
+                    <Switch>
+                        <Route exact path="/">
+                            <LandingPage />
+                        </Route>
+                        <Route path="/products/:bodypart">
+                            <Store />
+                        </Route>
+                        <Route path="/product/:id">
+                            <BigProduct />
+                        </Route>
+                        <Route exact path="/about">
+                            <About />
+                        </Route>
+                        <Route exact path="/career">
+                            <Career />
+                        </Route>
+                        <Route exact path="/error">
+                            <Error />
+                        </Route>
+                    </Switch>
+                    <Footer />
+                </Router>
             </div>
         </>
     );

@@ -18,7 +18,7 @@ const Top5 = () => {
     }, []);
 
     return (
-        <Main>
+        <Main id="top5">
             <TextWrapper2>
                 <Para2>Recommended for you</Para2>
             </TextWrapper2>

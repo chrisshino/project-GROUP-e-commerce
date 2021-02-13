@@ -2,14 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import { getStoreState } from "../reducers/hamburger-reducer";
+import { getHamburgerStoreState } from "../reducers/hamburger-reducer";
+
+import { getCartStoreState } from "../reducers/cart-toggle-reducer";
 import { themeVars } from "./GlobalStyles";
 import { toggleHamburger } from "../actions";
+import { toggleCart } from "../actions";
 import { useDispatch } from "react-redux";
 import { useTransition, animated } from "react-spring";
 import { useSelector } from "react-redux";
 import { FiMenu, FiShoppingCart, FiXCircle } from "react-icons/fi";
 import Hamburger from "./Hamburger";
+import Cart from "./Cart";
 
 import { LogoBlack } from "./Logo";
 
@@ -48,11 +52,18 @@ const firstRowStyle = {
     marginLeft: "10px",
 };
 
-const cartStyle = {
+const cartStyleInactive = {
     fontSize: "35px",
     color: `${themeVars.blue}`,
     position: "relative",
     top: "5px",
+};
+
+const cartStyleActive = {
+    fontSize: "35px",
+    color: `${themeVars.blue}`,
+    position: "relative",
+    top: "8px",
 };
 
 const menuStyle = {
@@ -68,9 +79,17 @@ const Logo = styled(Link)`
 
 const Header = () => {
     const dispatch = useDispatch();
-    const state = useSelector(getStoreState).hamburgerReducer.hamburgerStatus;
+    const hamburgerToggleState = useSelector(getHamburgerStoreState)
+        .hamburgerReducer.hamburgerStatus;
+    const cartToggleState = useSelector(getCartStoreState).cartToggle
+        .cartStatus;
+    const hamburgerTransitions = useTransition(hamburgerToggleState, null, {
+        from: { opacity: 0 },
+        enter: { opacity: 1 },
+        leave: { opacity: 0 },
+    });
 
-    const transitions = useTransition(state, null, {
+    const cartTransitions = useTransition(cartToggleState, null, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
@@ -84,12 +103,20 @@ const Header = () => {
                 </Logo>
 
                 <div>
-                    <HeaderBtn>
-                        <FiShoppingCart style={cartStyle} />
+                    <HeaderBtn
+                        onClick={() => {
+                            dispatch(toggleCart());
+                        }}
+                    >
+                        {cartToggleState == false ? (
+                            <FiShoppingCart style={cartStyleInactive} />
+                        ) : (
+                            <FiXCircle style={cartStyleActive}></FiXCircle>
+                        )}
                     </HeaderBtn>
 
                     <HeaderBtn onClick={() => dispatch(toggleHamburger())}>
-                        {state == false ? (
+                        {hamburgerToggleState == false ? (
                             <FiMenu style={menuStyle} />
                         ) : (
                             <FiXCircle style={menuStyle} />
@@ -98,10 +125,19 @@ const Header = () => {
                 </div>
             </div>
             <Catchline>Tech. Lifestyle. Fitness.</Catchline>
-            {transitions.map(({ item, key, props }) =>
+            {hamburgerTransitions.map(({ item, key, props }) =>
                 item ? (
                     <animated.div style={props}>
                         <Hamburger />
+                    </animated.div>
+                ) : (
+                    <animated.div style={props}></animated.div>
+                )
+            )}
+            {cartTransitions.map(({ item, key, props }) =>
+                item ? (
+                    <animated.div style={props}>
+                        <Cart />
                     </animated.div>
                 ) : (
                     <animated.div style={props}></animated.div>

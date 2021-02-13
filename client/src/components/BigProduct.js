@@ -12,7 +12,6 @@ const BigProduct = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const state = useSelector(getStoreState).cartReducer[id];
-    console.log(state);
     const addToCartFunc = (product) => {
         dispatch(addToCart(product));
     };

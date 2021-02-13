@@ -16,6 +16,6 @@ export default function hamburgerReducer(state = initialState, action) {
     }
 }
 
-export const getStoreState = (state) => {
+export const getHamburgerStoreState = (state) => {
     return state;
 };

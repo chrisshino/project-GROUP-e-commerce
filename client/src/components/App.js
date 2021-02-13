@@ -6,7 +6,8 @@ import {
     useParams,
 } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getStoreState } from "../reducers/hamburger-reducer";
+import { getHamburgerStoreState } from "../reducers/hamburger-reducer";
+import { getCartStoreState } from "../reducers/cart-toggle-reducer";
 
 import LandingPage from "../pages/LandingPage";
 import Career from "../pages/Career";
@@ -18,15 +19,15 @@ import Store from "../pages/Store";
 import About from "../pages/About";
 
 import GlobalStyles from "./GlobalStyles";
-const hideOverflow = { height: "100vh", overflow: "hidden" };
+const hideOverflow = { Height: "100vh", overflow: "hidden" };
 
 function App() {
-
-    const state = useSelector(getStoreState).hamburgerReducer.hamburgerStatus;
-
+    const hamburgerState = useSelector(getHamburgerStoreState).hamburgerReducer
+        .hamburgerStatus;
+    const cartState = useSelector(getCartStoreState).cartToggle.cartStatus;
     return (
         <>
-            <div style={state === true ? hideOverflow : null}>
+            <div style={hamburgerState || cartState === true ? hideOverflow : null}>
                 <GlobalStyles />
                 <Router>
                     <Header />

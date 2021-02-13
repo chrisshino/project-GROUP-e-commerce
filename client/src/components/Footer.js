@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { FiChevronUp } from "react-icons/fi";
 import { LogoWhite } from "./Logo";
@@ -31,10 +31,17 @@ const UpBar = styled.div`
     cursor: pointer;
 `;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled.button`
     color: ${themeVars.white};
     font-size: 18px;
     text-decoration: none;
+    background: none;
+    border: none;
+    outline: none;
+
+    &:active {
+        transform: scale(1.07);
+    }
 `;
 
 const CopyRight = styled.div`
@@ -45,6 +52,7 @@ const CopyRight = styled.div`
 `;
 
 const Footer = () => {
+    let history = useHistory();
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
         console.log("working");
@@ -57,8 +65,14 @@ const Footer = () => {
                     <CopyRight>All rights reserved. ©2021</CopyRight>
                 </div>
                 <div>
-                    <StyledLink to={"/about"}>About Us</StyledLink>
-                    {/* Needs to add link later */}
+                    <StyledLink 
+                        onClick={() => {
+                            history.push("/about");
+                            window.scrollTo(0,0);
+                        }}
+                    >
+                        About Us
+                    </StyledLink>
                 </div>
             </FooterWrapper>
             <UpBar onClick={scrollToTop}>

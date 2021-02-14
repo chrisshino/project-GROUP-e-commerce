@@ -12,6 +12,8 @@ import Hand from "../assets/body-parts/waving-hand.svg";
 import RunningShoes from "../assets/body-parts/running-shoes.svg";
 import Torso from "../assets/body-parts/female.svg";
 
+import { onMobileMediaQuery, onTabletMediaQuery, onDesktopMediaQuery } from "./Responsive";
+
 const StoreComponent = () => {
     let history = useHistory();
 
@@ -61,26 +63,15 @@ const StoreComponent = () => {
                     <Svg src={Waist} alt="Waist products" />
                 </Element>
             </BodyPart>
-            <BodyPart style={{ backgroundColor: `${themeVars.caribbeanGreen}` }}>
-                <Element
-                    onClick={() => {
-                        history.push("/products/Hands");
-                        window.scrollTo(0,0);
-                    }}
-                >
-                    <Title>Hands</Title>
-                    <Svg src={Hand} alt="Hands products" />
-                </Element>
-            </BodyPart>
-            <BodyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
+            <BodyPart style={{ backgroundColor: `${themeVars.pink}` }}>
                 <Element 
                     onClick={() => {
-                        history.push("/products/Feet");
+                        history.push("/products/Torso");
                         window.scrollTo(0,0);
                     }}
                 >
-                    <Title>Feet</Title>
-                    <Svg src={RunningShoes} alt="Feet products" />
+                    <Title>Torso</Title>
+                    <Svg src={Torso} alt="Torso products" />
                 </Element>
             </BodyPart>
             <BodyPart style={{ backgroundColor: `${themeVars.blue}` }}>
@@ -94,15 +85,26 @@ const StoreComponent = () => {
                     <Svg src={Neck} alt="Neck products" />
                 </Element>
             </BodyPart>
-            <BodyPart style={{ backgroundColor: `${themeVars.pink}` }}>
+            <BodyPart style={{ backgroundColor: `${themeVars.yellow}` }}>
                 <Element 
                     onClick={() => {
-                        history.push("/products/Torso");
+                        history.push("/products/Feet");
                         window.scrollTo(0,0);
                     }}
                 >
-                    <Title>Torso</Title>
-                    <Svg src={Torso} alt="Torso products" />
+                    <Title>Feet</Title>
+                    <Svg src={RunningShoes} alt="Feet products" />
+                </Element>
+            </BodyPart>
+            <BodyPart style={{ backgroundColor: `${themeVars.caribbeanGreen}` }}>
+                <Element
+                    onClick={() => {
+                        history.push("/products/Hands");
+                        window.scrollTo(0,0);
+                    }}
+                >
+                    <Title>Hands</Title>
+                    <Svg src={Hand} alt="Hands products" />
                 </Element>
             </BodyPart>
         </Main>
@@ -112,27 +114,59 @@ const StoreComponent = () => {
 export default StoreComponent;
 
 const Main = styled.div`
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
+    ${onDesktopMediaQuery} {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 80vw;
+        margin: 20px 10vw;
+    }
+
+    ${onTabletMediaQuery} {
+        position: relative;
+        height: 100%; 
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    ${onMobileMediaQuery} {
+        position: relative;
+        height: 100%; 
+        display: flex;
+        flex-wrap: wrap;
+    }
 `;
 
 const BodyPart = styled.div`
     border: 0;
-    margin: 0;
     padding: 0;
-    position: relative;
-    min-width: 50vw;
-    min-height: 50vw;
-    max-width: 50vw;
-    max-height: 50vw;
+
+    ${onDesktopMediaQuery} {
+        margin: 25px;
+        min-width: 15vw;
+        min-height: 15vw;
+        max-width: 15vw;
+        max-height: 15vw;
+    }
+
+    ${onTabletMediaQuery} {
+        margin: 0;
+        min-width: 25vw;
+        min-height: 25vw;
+        max-width: 25vw;
+        max-height: 25vw;
+    }
+    
+    ${onMobileMediaQuery} {
+        margin: 0;
+        min-width: 50vw;
+        min-height: 50vw;
+        max-width: 50vw;
+        max-height: 50vw;
+    }
 `;
 
 const Element = styled.button`
-    width: calc(50vw - 40px);
-    height: calc(50vw - 40px);
-    margin: 20px;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -142,6 +176,28 @@ const Element = styled.button`
     text-decoration: none;
     border: none;
     outline: none;
+
+    ${onDesktopMediaQuery} {
+        width: calc(15vw - 30px);
+        height: calc(15vw - 30px);
+        margin: 15px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    ${onTabletMediaQuery} {
+        width: calc(25vw - 30px);
+        height: calc(25vw - 30px);
+        margin: 15px;
+    }
+
+    ${onMobileMediaQuery} {
+        width: calc(50vw - 30px);
+        height: calc(50vw - 30px);
+        margin: 15px;
+    }
 `;
 
 const Title = styled.p`

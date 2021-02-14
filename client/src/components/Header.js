@@ -205,7 +205,7 @@ const Header = () => {
                 </BtnContainer>
                 <LinkContainer>
                     <StyledNavLink exact to="/" activeStyle={{color: `${themeVars.pink}`}}>Home</StyledNavLink>
-                    <StyledNavLink exact to="/body-parts" activeStyle={{color: `${themeVars.pink}`}}>Body Parts</StyledNavLink>
+                    <StyledNavLink exact to="/body-parts" activeStyle={{color: `${themeVars.pink}`}}>Products</StyledNavLink>
                     <StyledNavLink exact to="/about" activeStyle={{color: `${themeVars.pink}`}}>About</StyledNavLink>
                     <StyledNavLink exact to="/career" activeStyle={{color: `${themeVars.pink}`}}>Career</StyledNavLink>
                     <StyledButton>Cart (0)</StyledButton>

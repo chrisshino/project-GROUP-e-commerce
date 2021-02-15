@@ -4,8 +4,8 @@ import { themeVars } from "../components/GlobalStyles";
 
 import { onMobileMediaQuery, onTabletMediaQuery, onDesktopMediaQuery } from "../components/Responsive";
 
-import passionPhoto from "../assets/ian-schneider-TamMbr4okv4-unsplash.jpg";
-import officePhoto from "../assets/andrea-davis-OBV5XREI-ig-unsplash.jpg";
+import passionPhoto from "../assets/ian_schneider_tammbr_o9iAY.jpg";
+import officePhoto from "../assets/andrea_davis_obv5xre_bshQA.jpg";
 import workAreaPhoto from "../assets/scott-graham-5fNmWej4tAA-unsplash.jpg";
 
 const Heading = styled.h1`

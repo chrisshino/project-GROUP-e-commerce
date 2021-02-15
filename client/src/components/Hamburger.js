@@ -61,15 +61,15 @@ const Hamburger = () => {
     const dispatch = useDispatch();
     let history = useHistory();
     const handleBodyPartsBtnClick = (link) => {
-        dispatch(toggleHamburger(false));
+        dispatch(toggleHamburger());
         history.push(link);
     }
     const handleAbout = () => {
-        dispatch(toggleHamburger(false));
+        dispatch(toggleHamburger());
         history.push("/about");
     };
     const handleCareer = () => {
-        dispatch(toggleHamburger(false));
+        dispatch(toggleHamburger());
         history.push("/career");
     };
 
@@ -107,11 +107,11 @@ const Hamburger = () => {
                 </BodyPartDiv>
             </div>
 
-            <div style={innerDivStyle} onClick={handleAbout}>
+            <div style={innerDivStyle} onClick={handleCareer}>
                 Career
             </div>
 
-            <div style={innerDivStyle} onClick={handleCareer}>About Us</div>
+            <div style={innerDivStyle} onClick={handleAbout}>About Us</div>
         </div>
     );
 };

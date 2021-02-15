@@ -10,6 +10,12 @@ export default function hamburgerReducer(state = initialState, action) {
                 hamburgerStatus: !state.hamburgerStatus,
             };
         }
+        case "CLOSE_HAMBURGER": {
+            return {
+                ...state,
+                hamburgerStatus: false,
+            }
+        }
         default: {
             return state;
         }

@@ -107,11 +107,11 @@ const Hamburger = () => {
                 </BodyPartDiv>
             </div>
 
-            <div style={innerDivStyle} onClick={handleAbout}>
+            <div style={innerDivStyle} onClick={handleCareer}>
                 Career
             </div>
 
-            <div style={innerDivStyle} onClick={handleCareer}>About Us</div>
+            <div style={innerDivStyle} onClick={handleAbout}>About Us</div>
         </div>
     );
 };

@@ -6,6 +6,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
+require("dotenv").config();
+const stripe = require("stripe")(process.env.STRIPE_SECRET_TEST);
+const cors = require("cors");
+
 const PORT = 4000;
 
 express()
@@ -22,9 +26,11 @@ express()
     })
     .use(morgan("tiny"))
     .use(express.static("./server/assets"))
+    .use(bodyParser.urlencoded({ extended: true }))
     .use(bodyParser.json())
     .use(express.urlencoded({ extended: false }))
     .use("/", express.static(__dirname + "/"))
+    .use(cors())
 
     // REST endpoints?
     .get("/products", (req, res) => {
@@ -119,6 +125,32 @@ express()
             res.status(404).send({
                 status: 404,
                 message: e,
+            });
+        }
+    })
+
+    .post("/stripe/charge", cors(), async (req, res) => {
+        console.log("stripe-routes.js 9 | route reached", req.body);
+        let { amount, id } = req.body;
+        console.log("stripe-routes.js 10 | amount and id", amount, id);
+        try {
+            const payment = await stripe.paymentIntents.create({
+                amount: amount,
+                currency: "CAD",
+                description: "Your Company Description",
+                payment_method: id,
+                confirm: true,
+            });
+            console.log("stripe-routes.js 19 | payment", payment);
+            res.json({
+                message: "Payment Successful",
+                success: true,
+            });
+        } catch (error) {
+            console.log("stripe-routes.js 17 | error", error);
+            res.json({
+                message: "Payment Failed",
+                success: false,
             });
         }
     })

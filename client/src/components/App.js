@@ -17,14 +17,17 @@ import Footer from "./Footer";
 import BigProduct from "./BigProduct";
 import Store from "../pages/Store";
 import About from "../pages/About";
+import Products from "../pages/Products";
 
 import GlobalStyles from "./GlobalStyles";
 const hideOverflow = { Height: "100vh", overflow: "hidden" };
 
 function App() {
+
     const hamburgerState = useSelector(getHamburgerStoreState).hamburgerReducer
         .hamburgerStatus;
     const cartState = useSelector(getCartStoreState).cartToggle.cartStatus;
+
     return (
         <>
             <div style={hamburgerState || cartState === true ? hideOverflow : null}>
@@ -34,6 +37,9 @@ function App() {
                     <Switch>
                         <Route exact path="/">
                             <LandingPage />
+                        </Route>
+                        <Route exact path="/products">
+                            <Products />
                         </Route>
                         <Route path="/products/:bodypart">
                             <Store />

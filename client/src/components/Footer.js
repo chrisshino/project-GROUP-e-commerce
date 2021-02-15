@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { FiChevronUp } from "react-icons/fi";
 import { LogoWhite } from "./Logo";
 import { themeVars } from "./GlobalStyles";
+import { onDesktopMediaQuery, onMobileMediaQuery, onTabletMediaQuery } from "./Responsive";
 
 const FooterWrapper = styled.footer`
     display: flex;
@@ -13,6 +14,10 @@ const FooterWrapper = styled.footer`
     padding: 1rem;
     background-color: ${themeVars.black};
     border-bottom: 1px solid white;
+
+    ${onDesktopMediaQuery} {
+        height: 120px;
+    }
 `;
 
 const UpBar = styled.div`
@@ -28,10 +33,13 @@ const UpBar = styled.div`
     );
     padding: 1rem;
     font-size: 0.8rem;
-    cursor: pointer;
+
+    ${onDesktopMediaQuery} {
+        display: none;
+    }
 `;
 
-const StyledLink = styled.button`
+const StyledBtn = styled.button`
     color: ${themeVars.white};
     font-size: 18px;
     text-decoration: none;
@@ -39,8 +47,49 @@ const StyledLink = styled.button`
     border: none;
     outline: none;
 
-    &:active {
-        transform: scale(1.07);
+    ${onDesktopMediaQuery} {
+        margin: 0 45px;
+        &:hover {
+            transform: scale(1.07);
+            cursor: pointer;
+        }
+    }
+
+    ${onTabletMediaQuery} {
+        &:active {
+            transform: scale(1.07);
+        }
+    }
+
+    ${onMobileMediaQuery} {
+        &:active {
+            transform: scale(1.07);
+        }
+    }
+`;
+
+const StyledBtn1 = styled.button`
+    ${onDesktopMediaQuery} {
+        color: ${themeVars.white};
+        font-size: 18px;
+        text-decoration: none;
+        background: none;
+        border: none;
+        outline: none;
+        margin: 0 45px;
+
+        &:hover {
+            transform: scale(1.07);
+            cursor: pointer;
+        }
+    }
+
+    ${onTabletMediaQuery} {
+        display: none;
+    }
+
+    ${onMobileMediaQuery} {
+        display: none;
     }
 `;
 
@@ -65,14 +114,38 @@ const Footer = () => {
                     <CopyRight>All rights reserved. ©2021</CopyRight>
                 </div>
                 <div>
-                    <StyledLink 
+                    <StyledBtn1 
+                        onClick={() => {
+                            history.push("/");
+                            window.scrollTo(0,0);
+                        }}
+                    >
+                        Home
+                    </StyledBtn1>
+                    <StyledBtn1 
+                        onClick={() => {
+                            history.push("/products");
+                            window.scrollTo(0,0);
+                        }}
+                    >
+                        Products
+                    </StyledBtn1>
+                    <StyledBtn 
                         onClick={() => {
                             history.push("/about");
                             window.scrollTo(0,0);
                         }}
                     >
                         About Us
-                    </StyledLink>
+                    </StyledBtn>
+                    <StyledBtn1 
+                        onClick={() => {
+                            history.push("/career");
+                            window.scrollTo(0,0);
+                        }}
+                    >
+                        Career
+                    </StyledBtn1>
                 </div>
             </FooterWrapper>
             <UpBar onClick={scrollToTop}>

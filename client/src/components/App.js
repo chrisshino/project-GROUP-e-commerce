@@ -16,12 +16,12 @@ import Footer from "./Footer";
 import BigProduct from "./BigProduct";
 import Store from "../pages/Store";
 import About from "../pages/About";
+import Products from "../pages/Products";
 
 import GlobalStyles from "./GlobalStyles";
 const hideOverflow = { height: "100vh", overflow: "hidden" };
 
 function App() {
-
     const state = useSelector(getStoreState).hamburgerReducer.hamburgerStatus;
 
     return (
@@ -33,6 +33,9 @@ function App() {
                     <Switch>
                         <Route exact path="/">
                             <LandingPage />
+                        </Route>
+                        <Route exact path="/products">
+                            <Products />
                         </Route>
                         <Route path="/products/:bodypart">
                             <Store />

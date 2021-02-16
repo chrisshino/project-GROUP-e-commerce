@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 
 import { getHamburgerStoreState } from "../reducers/hamburger-reducer";
-
+import { getStoreState } from "../reducers/cart-reducer";
 import { getCartStoreState } from "../reducers/cart-toggle-reducer";
 import { themeVars } from "./GlobalStyles";
 
@@ -20,7 +20,11 @@ import Cart from "./Cart";
 
 import { LogoBlack, LogoBlackDesktop } from "./Logo";
 
-import { onMobileMediaQuery, onTabletMediaQuery, onDesktopMediaQuery } from "./Responsive";
+import {
+    onMobileMediaQuery,
+    onTabletMediaQuery,
+    onDesktopMediaQuery,
+} from "./Responsive";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -33,11 +37,11 @@ const Wrapper = styled.div`
         height: 120px;
         justify-content: center;
     }
-    
+
     ${onTabletMediaQuery} {
         height: 93px;
     }
-    
+
     ${onMobileMediaQuery} {
         height: 93px;
     }
@@ -178,8 +182,22 @@ const menuStyle = {
     top: "8px",
 };
 
+const quantityCircle = {
+    height: "20px",
+    width: "20px",
+    borderRadius: "50%",
+    background: `${themeVars.pink}`,
+    color: `${themeVars.white}`,
+    lineHeight: "20px",
+    position: "absolute",
+    top: "12px",
+    right: "65px",
+};
+
 const Header = () => {
     const dispatch = useDispatch();
+    const cartState = useSelector(getStoreState).cartReducer;
+    const cartQuantity = Object.keys(cartState).length;
     const hamburgerToggleState = useSelector(getHamburgerStoreState)
         .hamburgerReducer.hamburgerStatus;
     const cartToggleState = useSelector(getCartStoreState).cartToggle
@@ -200,7 +218,7 @@ const Header = () => {
     const handleLandingPage = () => {
         dispatch(closeHamburger());
         history.push("/");
-    }
+    };
 
     return (
         <Wrapper>
@@ -208,18 +226,21 @@ const Header = () => {
                 <Logo onClick={handleLandingPage}>
                     <LogoBlack />
                 </Logo>
-      
+
                 <LogoDesktop exact to="/">
                     <LogoBlackDesktop />
                 </LogoDesktop>
                 <BtnContainer>
-                     <HeaderBtn
+                    <HeaderBtn
                         onClick={() => {
                             dispatch(toggleCart());
                         }}
                     >
                         {cartToggleState == false ? (
-                            <FiShoppingCart style={cartStyleInactive} />
+                            <>
+                                <FiShoppingCart style={cartStyleInactive} />
+                                <div style={quantityCircle}>{cartQuantity}</div>
+                            </>
                         ) : (
                             <FiXCircle style={cartStyleActive}></FiXCircle>
                         )}
@@ -227,7 +248,6 @@ const Header = () => {
 
                     <HeaderBtn onClick={() => dispatch(toggleHamburger())}>
                         {hamburgerToggleState == false ? (
-
                             <FiMenu style={menuStyle} />
                         ) : (
                             <FiXCircle style={menuStyle} />
@@ -235,11 +255,45 @@ const Header = () => {
                     </HeaderBtn>
                 </BtnContainer>
                 <LinkContainer>
-                    <StyledNavLink exact to="/" activeStyle={{color: `${themeVars.pink}`}}>Home</StyledNavLink>
-                    <StyledNavLink exact to="/products" activeStyle={{color: `${themeVars.pink}`}}>Products</StyledNavLink>
-                    <StyledNavLink exact to="/about" activeStyle={{color: `${themeVars.pink}`}}>About</StyledNavLink>
-                    <StyledNavLink exact to="/career" activeStyle={{color: `${themeVars.pink}`}}>Career</StyledNavLink>
-                    <StyledButton>Cart (0)</StyledButton>
+                    <StyledNavLink
+                        exact
+                        to="/"
+                        activeStyle={{ color: `${themeVars.pink}` }}
+                    >
+                        Home
+                    </StyledNavLink>
+                    <StyledNavLink
+                        exact
+                        to="/products"
+                        activeStyle={{ color: `${themeVars.pink}` }}
+                    >
+                        Products
+                    </StyledNavLink>
+                    <StyledNavLink
+                        exact
+                        to="/about"
+                        activeStyle={{ color: `${themeVars.pink}` }}
+                    >
+                        About
+                    </StyledNavLink>
+                    <StyledNavLink
+                        exact
+                        to="/career"
+                        activeStyle={{ color: `${themeVars.pink}` }}
+                    >
+                        Career
+                    </StyledNavLink>
+                    <StyledButton
+                        onClick={() => {
+                            dispatch(toggleCart());
+                        }}
+                    >
+                        Cart (
+                        <span style={{ color: `${themeVars.pink}` }}>
+                            {cartQuantity}
+                        </span>
+                        )
+                    </StyledButton>
                 </LinkContainer>
             </div>
             <Catchline>Tech. Lifestyle. Fitness.</Catchline>

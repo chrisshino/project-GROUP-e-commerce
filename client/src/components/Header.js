@@ -83,21 +83,6 @@ const StyledNavLink = styled(NavLink)`
     margin: 0 25px;
 `;
 
-//This botton is for the Cart link in the desktop version.
-const StyledButton = styled.button`
-    color: ${themeVars.blue};
-    font-size: 25px;
-    text-decoration: none;
-    border: none;
-    background: none;
-    outline: none;
-    margin: 0 25px;
-
-    &:hover {
-        cursor: pointer;
-    }
-`;
-
 const Catchline = styled.div`
     font-weight: 700;
     margin: 0 0 0 25px;
@@ -283,17 +268,17 @@ const Header = () => {
                     >
                         Career
                     </StyledNavLink>
-                    <StyledButton
-                        onClick={() => {
-                            dispatch(toggleCart());
-                        }}
+                    <StyledNavLink
+                        exact
+                        to="/cart"
+                        activeStyle={{ color: `${themeVars.pink}` }}
                     >
                         Cart (
                         <span style={{ color: `${themeVars.pink}` }}>
                             {cartQuantity}
                         </span>
                         )
-                    </StyledButton>
+                    </StyledNavLink>
                 </LinkContainer>
             </div>
             <Catchline>Tech. Lifestyle. Fitness.</Catchline>

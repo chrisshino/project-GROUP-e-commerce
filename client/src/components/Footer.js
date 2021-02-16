@@ -20,6 +20,17 @@ const FooterWrapper = styled.footer`
     }
 `;
 
+const LogoWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    ${onDesktopMediaQuery} {
+        &:hover {
+            cursor: pointer;
+        }
+    }
+`;
+
 const UpBar = styled.div`
     display: flex;
     justify-content: center;
@@ -50,7 +61,7 @@ const StyledBtn = styled.button`
     ${onDesktopMediaQuery} {
         margin: 0 45px;
         &:hover {
-            transform: scale(1.07);
+            text-decoration: underline;
             cursor: pointer;
         }
     }
@@ -79,7 +90,7 @@ const StyledBtn1 = styled.button`
         margin: 0 45px;
 
         &:hover {
-            transform: scale(1.07);
+            text-decoration: underline;
             cursor: pointer;
         }
     }
@@ -109,10 +120,15 @@ const Footer = () => {
     return (
         <>
             <FooterWrapper>
-                <div style={{ display: "flex", flexDirection: "column" }}>
+                <LogoWrapper 
+                    onClick={() => {
+                        history.push("/");
+                        window.scrollTo(0,0);
+                    }}
+                >
                     <LogoWhite />
                     <CopyRight>All rights reserved. ©2021</CopyRight>
-                </div>
+                </LogoWrapper>
                 <div>
                     <StyledBtn1 
                         onClick={() => {

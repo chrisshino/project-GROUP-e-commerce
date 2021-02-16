@@ -17,16 +17,16 @@ const TextWrapper1 = styled.div`
     background-color: ${themeVars.black};
     align-items: center;
     
-    ${onMobileMediaQuery} {
-        height: 28px;
+    ${onDesktopMediaQuery} {
+        height: 80px;
     }
 
     ${onTabletMediaQuery} {
         height: 60px;
     }
 
-    ${onDesktopMediaQuery} {
-        height: 80px;
+    ${onMobileMediaQuery} {
+        height: 28px;
     }
 `;
 

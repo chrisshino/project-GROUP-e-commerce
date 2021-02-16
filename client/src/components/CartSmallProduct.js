@@ -26,11 +26,11 @@ const CartSmallProduct = ({ item, i }) => {
     };
 
     const minusOnClick = (item) => {
-      dispatch(subtractFromCart(item))
+        dispatch(subtractFromCart(item))
     };
 
     const deleteOnClick = (item) => {
-      dispatch(removeFromCart(item))
+        dispatch(removeFromCart(item))
     }
     return (
         <Item
@@ -42,7 +42,7 @@ const CartSmallProduct = ({ item, i }) => {
         >
             <closeButton
             onClick={() => {
-              deleteOnClick(item)
+                deleteOnClick(item)
             }}
             >X</closeButton>
             <Img src={item.imageSrc} alt="Product image" />
@@ -61,9 +61,9 @@ const CartSmallProduct = ({ item, i }) => {
                         </PlusMinusButton>
                         {item.quantity}
                         <PlusMinusButton 
-                         onClick={() => {
-                          minusOnClick(item);
-                      }}
+                            onClick={() => {
+                                minusOnClick(item);
+                            }}
                         >
                             <FiMinus />
                         </PlusMinusButton>
@@ -92,9 +92,9 @@ const PlusMinusButton = styled.button`
 `;
 
 const closeButton = styled.button`
-  position: absolute;
-  top:0;
-  left: 0;
+    position: absolute;
+    top:0;
+    left: 0;
 `;
 
 const Item = styled.div`

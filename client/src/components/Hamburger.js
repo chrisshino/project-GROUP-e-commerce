@@ -4,6 +4,7 @@ import { themeVars } from "./GlobalStyles";
 import { useHistory } from "react-router-dom";
 import { toggleHamburger } from "../actions";
 import { useDispatch } from "react-redux";
+import { onMobileMediaQuery, onTabletMediaQuery } from "./Responsive";
 
 
 const hamburgerStyle = {
@@ -28,13 +29,20 @@ const innerDivStyle = {
     marginTop: "10px",
 };
 
-const bodyPartWrapper = {
-    padding: "1rem",
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    width: "80%",
-};
+const BodyPartWrapper = styled.div`
+        padding: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        ${onTabletMediaQuery} {
+            width: 70%;
+        }
+
+        ${onMobileMediaQuery} {
+            width: 80%;
+        }
+`; 
 
 const BodyPartDiv = styled.button`
     display: flex;
@@ -52,6 +60,32 @@ const BodyPartDiv = styled.button`
     border-radius: 10px;
     border: none;
     outline: none;
+    &:active {
+        transform: scale(1.1);
+    }
+`;
+
+const Career = styled.button`
+    color: ${themeVars.midnightGreen};
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 2rem;
+
+    &:active {
+        transform: scale(1.1);
+    }
+`;
+
+const About = styled.button`
+    color: ${themeVars.midnightGreen};
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 2rem;
+
     &:active {
         transform: scale(1.1);
     }
@@ -76,7 +110,7 @@ const Hamburger = () => {
     return (
         <div style={hamburgerStyle}>
             <div style={{ color: `${themeVars.midnightGreen}`, marginTop:'1.5rem'  }}>Item Category</div>
-            <div style={bodyPartWrapper}>
+            <BodyPartWrapper>
                 <BodyPartDiv 
                     style={{backgroundColor:`${themeVars.caribbeanGreen}`}}
                     onClick={() => handleBodyPartsBtnClick("/products/Wrist")}
@@ -105,13 +139,13 @@ const Hamburger = () => {
                 >
                     Torso
                 </BodyPartDiv>
-            </div>
-
-            <div style={innerDivStyle} onClick={handleCareer}>
+            </BodyPartWrapper>
+            <Career onClick={handleCareer}>
                 Career
-            </div>
-
-            <div style={innerDivStyle} onClick={handleAbout}>About Us</div>
+            </Career>
+            <About onClick={handleAbout}>
+                About Us
+            </About>
         </div>
     );
 };

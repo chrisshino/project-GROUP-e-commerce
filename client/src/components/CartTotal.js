@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
+import { onTabletMediaQuery } from "./Responsive";
 
 const Wrapper = styled.div`
     box-sizing: border-box;
@@ -11,6 +12,10 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
+
+    ${onTabletMediaQuery} {
+        margin-top: 30px;
+    }
 `;
 
 const subTotalStyle = {

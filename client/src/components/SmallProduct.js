@@ -14,7 +14,9 @@ import {
 const SmallProduct = ({ item, i }) => {
     let history = useHistory();
     const dispatch = useDispatch();
-    const addToCartFunc = (item) => {
+    const addToCartFunc = (item, ev) => {
+        ev.stopPropagation();
+
         dispatch(addToCart(item));
     };
     let warning = "normal";
@@ -47,7 +49,7 @@ const SmallProduct = ({ item, i }) => {
                     <Add
                         disabled={disabled}
                         className={disabled}
-                        onClick={() => addToCartFunc(item)}
+                        onClick={(ev) => addToCartFunc(item, ev)}
                     >
                         Add
                     </Add>

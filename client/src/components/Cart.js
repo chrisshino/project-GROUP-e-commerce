@@ -14,7 +14,7 @@ const cartStyle = {
     width: "100%",
     // minHeight: "100vh",
     height: "100%",
-    borderTop: "1px solid black",
+    // borderTop: "1px solid black",
     display: "flex",
     flexDirection: "column",
     justifyContent: "top",

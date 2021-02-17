@@ -192,12 +192,14 @@ const Header = () => {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
+        config: {mass:1, tension:500, friction:18}
     });
 
     const cartTransitions = useTransition(cartToggleState, null, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
+        config: {mass:1, tension:500, friction:18}
     });
 
     let history = useHistory();

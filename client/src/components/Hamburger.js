@@ -12,7 +12,6 @@ const hamburgerStyle = {
     color: `${themeVars.blue}`,
     width: "100%",
     height: "100vh",
-    marginTop: "2rem",
     borderTop: "1px solid black",
     paddingTop: "15%",
     display: "flex",
@@ -76,7 +75,7 @@ const Hamburger = () => {
 
     return (
         <div style={hamburgerStyle}>
-            <div style={{ color: `${themeVars.midnightGreen}`  }}>Item Category</div>
+            <div style={{ color: `${themeVars.midnightGreen}`, marginTop:'1.5rem'  }}>Item Category</div>
             <div style={bodyPartWrapper}>
                 <BodyPartDiv 
                     style={{backgroundColor:`${themeVars.caribbeanGreen}`}}

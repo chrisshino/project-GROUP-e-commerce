@@ -13,6 +13,7 @@ export const addToCart = (item) => ({
     item,
 });
 
+
 export const toggleCart = () => ({
     type: 'TOGGLE_CART'
 })
@@ -25,5 +26,9 @@ export const removeFromCart = (item) => ({
 export const subtractFromCart = (item) => ({
     type: 'SUBTRACT_FROM_CART',
     item
+})
+
+export const closeCart = () => ({
+    type: 'CLOSE_CART'
 })
 

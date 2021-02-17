@@ -8,7 +8,7 @@ import { getCartStoreState } from "../reducers/cart-toggle-reducer";
 import { themeVars } from "./GlobalStyles";
 
 import { toggleCart } from "../actions";
-import { toggleHamburger, closeHamburger } from "../actions";
+import { toggleHamburger, closeHamburger, closeCart } from "../actions";
 
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -205,15 +205,31 @@ const Header = () => {
         dispatch(closeHamburger());
         history.push("/");
     };
+    
+    const cartOnClickFunc = () => {
+        if (cartToggleState == false) {
+            dispatch(closeHamburger());
+            dispatch(toggleCart());
+        } else {
+            dispatch(toggleCart());
+        }
+    };
+
+    const hamburgerOnClickFunc = () => {
+        if (hamburgerToggleState == false) {
+            dispatch(toggleHamburger())
+            dispatch(closeCart())
+        } else {
+            dispatch(toggleHamburger())
+        }
+    }
 
     return (
         <>
             <Wrapper
                 style={{
-                    position:
-                        cartToggleState  ? "fixed" : "",
-                    overflow:
-                        cartToggleState  ? "hidden" : "",
+                    position: cartToggleState ? "fixed" : "",
+                    overflow: cartToggleState ? "hidden" : "",
                 }}
             >
                 <div style={firstRowStyle}>
@@ -225,11 +241,7 @@ const Header = () => {
                         <LogoBlackDesktop />
                     </LogoDesktop>
                     <BtnContainer>
-                        <HeaderBtn
-                            onClick={() => {
-                                dispatch(toggleCart());
-                            }}
-                        >
+                        <HeaderBtn onClick={cartOnClickFunc}>
                             {cartToggleState == false ? (
                                 <>
                                     <FiShoppingCart style={cartStyleInactive} />
@@ -242,7 +254,7 @@ const Header = () => {
                             )}
                         </HeaderBtn>
 
-                        <HeaderBtn onClick={() => dispatch(toggleHamburger())}>
+                        <HeaderBtn onClick={hamburgerOnClickFunc}>
                             {hamburgerToggleState == false ? (
                                 <FiMenu style={menuStyle} />
                             ) : (

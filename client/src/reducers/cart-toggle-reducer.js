@@ -10,6 +10,12 @@ export default function cartToggle(state = initialState, action) {
               cartStatus: !state.cartStatus,
           };
       }
+      case "CLOSE_CART": {
+        return {
+          ...state,
+          cartStatus: false
+        }
+      }
       default: {
           return state;
       }

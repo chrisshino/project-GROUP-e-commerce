@@ -354,7 +354,7 @@ const Price = styled.p`
 
     ${onDesktopMediaQuery} {
         font-size: 30px;
-        /* margin-left: 40px; */
+        margin-left: 20px;
     }
 
     ${onTabletMediaQuery} {

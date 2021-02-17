@@ -12,7 +12,7 @@ const hamburgerStyle = {
     color: `${themeVars.blue}`,
     width: "100%",
     height: "100vh",
-    marginTop: "1rem",
+    marginTop: "2rem",
     borderTop: "1px solid black",
     paddingTop: "15%",
     display: "flex",
@@ -20,6 +20,7 @@ const hamburgerStyle = {
     justifyContent: "top",
     alignItems: "center",
     fontSize: "2rem",
+    
 };
 
 const innerDivStyle = {

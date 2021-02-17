@@ -12,7 +12,8 @@ const cartStyle = {
     opacity: "0.99",
     color: `${themeVars.blue}`,
     width: "100%",
-    height: "100vh",
+    // minHeight: "100vh",
+    height: "100%",
     borderTop: "1px solid black",
     display: "flex",
     flexDirection: "column",
@@ -21,6 +22,10 @@ const cartStyle = {
     boxSizing: "border-box",
     fontSize: "1rem",
     marginTop: "1rem",
+    position: "absolute",
+    top: "70px",
+    overflow: "scroll",
+    paddingTop: '1rem'
 };
 
 const itemWrapper = {
@@ -28,14 +33,13 @@ const itemWrapper = {
     padding: "20px",
     boxSizing: "border-box",
     // margin: "1rem",
-    border: "none"
-
+    border: "none",
 };
 
 const Cart = () => {
     const storeInventoryState = useSelector(getStoreState).cartReducer;
     const inventoryArray = Object.values(storeInventoryState);
- 
+
     return (
         <div style={cartStyle}>
             {inventoryArray.map((item) => {

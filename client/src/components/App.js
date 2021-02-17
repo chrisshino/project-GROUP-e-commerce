@@ -20,20 +20,25 @@ import About from "../pages/About";
 import Products from "../pages/Products";
 
 import GlobalStyles from "./GlobalStyles";
-const hideOverflow = { Height: "100vh", overflow: "hidden" };
+const hideOverflow = { display: 'none' };
 
 function App() {
-
     const hamburgerState = useSelector(getHamburgerStoreState).hamburgerReducer
         .hamburgerStatus;
     const cartState = useSelector(getCartStoreState).cartToggle.cartStatus;
 
     return (
         <>
-            <div style={hamburgerState || cartState === true ? hideOverflow : null}>
-                <GlobalStyles />
-                <Router>
-                    <Header />
+            <GlobalStyles />
+            <Router>
+                <Header />
+                <div
+                    style={
+                        hamburgerState || cartState === true
+                            ? hideOverflow
+                            : null
+                    }
+                >
                     <Switch>
                         <Route exact path="/">
                             <LandingPage />
@@ -57,9 +62,9 @@ function App() {
                             <Error />
                         </Route>
                     </Switch>
-                    <Footer />
-                </Router>
-            </div>
+                </div>
+                <Footer />
+            </Router>
         </>
     );
 }

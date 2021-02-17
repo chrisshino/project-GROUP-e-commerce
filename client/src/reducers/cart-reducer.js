@@ -24,6 +24,7 @@ export default function cartReducer(state = initialState, action) {
                     },
                 };
             }
+            break;
         }
         case "SUBTRACT_FROM_CART": {
             if (action.item.quantity > 0) {
@@ -37,6 +38,7 @@ export default function cartReducer(state = initialState, action) {
                     },
                 };
             } 
+            break;
         }
         case "REMOVE_FROM_CART": {
             return produce(state, (draftState) => {

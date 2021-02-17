@@ -14,18 +14,19 @@ const cartStyle = {
     width: "100%",
     // minHeight: "100vh",
     height: "100%",
-    // borderTop: "1px solid black",
+    borderTop: "1px solid black",
     display: "flex",
     flexDirection: "column",
     justifyContent: "top",
     alignItems: "center",
     boxSizing: "border-box",
     fontSize: "1rem",
-    marginTop: "1rem",
+    marginTop: "1.5rem",
     position: "absolute",
     top: "70px",
     overflow: "scroll",
-    paddingTop: '1rem'
+    // paddingTop: '1rem'
+    paddingTop: '10%'
 };
 
 const itemWrapper = {

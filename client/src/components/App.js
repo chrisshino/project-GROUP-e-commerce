@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    useParams,
+    Route
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getHamburgerStoreState } from "../reducers/hamburger-reducer";
@@ -62,8 +61,8 @@ function App() {
                             <Error />
                         </Route>
                     </Switch>
+                    <Footer />
                 </div>
-                <Footer />
             </Router>
         </>
     );

@@ -176,8 +176,8 @@ const quantityCircle = {
     color: `${themeVars.white}`,
     lineHeight: "20px",
     position: "absolute",
-    top: "12px",
-    right: "65px",
+    top: "3px",
+    right: "-5px",
 };
 
 const Header = () => {
@@ -192,24 +192,25 @@ const Header = () => {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
-        config: {mass:1, tension:500, friction:18}
+        config: {mass:1, tension:500, friction:22}
     });
 
     const cartTransitions = useTransition(cartToggleState, null, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
-        config: {mass:1, tension:500, friction:18}
+        config: {mass:1, tension:500, friction:22}
     });
 
     let history = useHistory();
     const handleLandingPage = () => {
         dispatch(closeHamburger());
+        dispatch(closeCart());
         history.push("/");
     };
     
     const cartOnClickFunc = () => {
-        if (cartToggleState == false) {
+        if (cartToggleState === false) {
             dispatch(closeHamburger());
             dispatch(toggleCart());
         } else {
@@ -218,7 +219,7 @@ const Header = () => {
     };
 
     const hamburgerOnClickFunc = () => {
-        if (hamburgerToggleState == false) {
+        if (hamburgerToggleState === false) {
             dispatch(toggleHamburger())
             dispatch(closeCart())
         } else {
@@ -244,20 +245,20 @@ const Header = () => {
                     </LogoDesktop>
                     <BtnContainer>
                         <HeaderBtn onClick={cartOnClickFunc}>
-                            {cartToggleState == false ? (
-                                <>
+                            {cartToggleState === false ? (
+                                <div style={{position: "relative"}}>
                                     <FiShoppingCart style={cartStyleInactive} />
                                     <div style={quantityCircle}>
                                         {cartQuantity}
                                     </div>
-                                </>
+                                </div>
                             ) : (
                                 <FiXCircle style={cartStyleActive}></FiXCircle>
                             )}
                         </HeaderBtn>
 
                         <HeaderBtn onClick={hamburgerOnClickFunc}>
-                            {hamburgerToggleState == false ? (
+                            {hamburgerToggleState === false ? (
                                 <FiMenu style={menuStyle} />
                             ) : (
                                 <FiXCircle style={menuStyle} />

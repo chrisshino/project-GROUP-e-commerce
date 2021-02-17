@@ -10,6 +10,7 @@ const Wrapper = styled.div`
     color: ${themeVars.midnightGreen};
     display: flex;
     flex-direction: column;
+    margin-bottom: 50px;
 `;
 
 const subTotalStyle = {
@@ -24,6 +25,7 @@ const totalStyle = {
     fontWeight: "bold",
     color: `${themeVars.pink}`,
     marginTop: "10px",
+
 };
 
 const CartTotal = ({ items }) => {

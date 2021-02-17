@@ -113,7 +113,7 @@ const Item = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 5% auto;
+    margin: 100px auto;
     text-decoration: none;
     &:visited {
         color: ${themeVars.midnightGreen};

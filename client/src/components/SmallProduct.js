@@ -5,7 +5,11 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { addToCart } from "../actions";
-import { onMobileMediaQuery, onTabletMediaQuery, onDesktopMediaQuery } from "./Responsive";
+import {
+    onMobileMediaQuery,
+    onTabletMediaQuery,
+    onDesktopMediaQuery,
+} from "./Responsive";
 
 const SmallProduct = ({ item, i }) => {
     let history = useHistory();
@@ -22,15 +26,15 @@ const SmallProduct = ({ item, i }) => {
     }
 
     return (
-        <Item 
-            key={i} 
+        <Item
+            key={i}
             onClick={() => {
                 history.push(`/product/${item._id}`);
-                window.scrollTo(0,0);
+                window.scrollTo(0, 0);
             }}
-        >   
+        >
             <ImgWrapper>
-                <Img src={item.imageSrc} alt="Product image" />
+                <Img src={item.imageSrc} alt="Product image" loading="lazy" />
             </ImgWrapper>
             <ItemDetails>
                 <ItemName>{item.name}</ItemName>
@@ -71,7 +75,8 @@ const Item = styled.div`
 
         &:hover {
             cursor: pointer;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+                0 6px 20px 0 rgba(0, 0, 0, 0.19);
             border-radius: 10px;
         }
     }
@@ -150,7 +155,7 @@ const ItemFooter = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    
+
     ${onDesktopMediaQuery} {
         padding-right: 15px;
     }

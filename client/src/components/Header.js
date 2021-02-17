@@ -30,8 +30,9 @@ const Wrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    position: relative;
-    z-index: 1;
+    /* position: fixed; */ 
+    z-index: 10;
+    background-color: white;
 
     ${onDesktopMediaQuery} {
         height: 120px;
@@ -206,101 +207,114 @@ const Header = () => {
     };
 
     return (
-        <Wrapper>
-            <div style={firstRowStyle}>
-                <Logo onClick={handleLandingPage}>
-                    <LogoBlack />
-                </Logo>
+        <>
+            <Wrapper
+                style={{
+                    position:
+                        cartToggleState || hamburgerToggleState ? "fixed" : "",
+                    overflow:
+                        cartToggleState || hamburgerToggleState ? "hidden" : "",
+                }}
+            >
+                <div style={firstRowStyle}>
+                    <Logo onClick={handleLandingPage}>
+                        <LogoBlack />
+                    </Logo>
 
-                <LogoDesktop exact to="/">
-                    <LogoBlackDesktop />
-                </LogoDesktop>
-                <BtnContainer>
-                    <HeaderBtn
-                        onClick={() => {
-                            dispatch(toggleCart());
-                        }}
-                    >
-                        {cartToggleState == false ? (
-                            <>
-                                <FiShoppingCart style={cartStyleInactive} />
-                                <div style={quantityCircle}>{cartQuantity}</div>
-                            </>
-                        ) : (
-                            <FiXCircle style={cartStyleActive}></FiXCircle>
-                        )}
-                    </HeaderBtn>
+                    <LogoDesktop exact to="/">
+                        <LogoBlackDesktop />
+                    </LogoDesktop>
+                    <BtnContainer>
+                        <HeaderBtn
+                            onClick={() => {
+                                dispatch(toggleCart());
+                            }}
+                        >
+                            {cartToggleState == false ? (
+                                <>
+                                    <FiShoppingCart style={cartStyleInactive} />
+                                    <div style={quantityCircle}>
+                                        {cartQuantity}
+                                    </div>
+                                </>
+                            ) : (
+                                <FiXCircle style={cartStyleActive}></FiXCircle>
+                            )}
+                        </HeaderBtn>
 
-                    <HeaderBtn onClick={() => dispatch(toggleHamburger())}>
-                        {hamburgerToggleState == false ? (
-                            <FiMenu style={menuStyle} />
-                        ) : (
-                            <FiXCircle style={menuStyle} />
-                        )}
-                    </HeaderBtn>
-                </BtnContainer>
-                <LinkContainer>
-                    <StyledNavLink
-                        exact
-                        to="/"
-                        activeStyle={{ color: `${themeVars.pink}` }}
-                    >
-                        Home
-                    </StyledNavLink>
-                    <StyledNavLink
-                        exact
-                        to="/products"
-                        activeStyle={{ color: `${themeVars.pink}` }}
-                    >
-                        Products
-                    </StyledNavLink>
-                    <StyledNavLink
-                        exact
-                        to="/about"
-                        activeStyle={{ color: `${themeVars.pink}` }}
-                    >
-                        About
-                    </StyledNavLink>
-                    <StyledNavLink
-                        exact
-                        to="/career"
-                        activeStyle={{ color: `${themeVars.pink}` }}
-                    >
-                        Career
-                    </StyledNavLink>
-                    <StyledNavLink
-                        exact
-                        to="/cart"
-                        activeStyle={{ color: `${themeVars.pink}` }}
-                    >
-                        Cart (
-                        <span style={{ color: `${themeVars.pink}` }}>
-                            {cartQuantity}
-                        </span>
-                        )
-                    </StyledNavLink>
-                </LinkContainer>
+                        <HeaderBtn onClick={() => dispatch(toggleHamburger())}>
+                            {hamburgerToggleState == false ? (
+                                <FiMenu style={menuStyle} />
+                            ) : (
+                                <FiXCircle style={menuStyle} />
+                            )}
+                        </HeaderBtn>
+                    </BtnContainer>
+                    <LinkContainer>
+                        <StyledNavLink
+                            exact
+                            to="/"
+                            activeStyle={{ color: `${themeVars.pink}` }}
+                        >
+                            Home
+                        </StyledNavLink>
+                        <StyledNavLink
+                            exact
+                            to="/products"
+                            activeStyle={{ color: `${themeVars.pink}` }}
+                        >
+                            Products
+                        </StyledNavLink>
+                        <StyledNavLink
+                            exact
+                            to="/about"
+                            activeStyle={{ color: `${themeVars.pink}` }}
+                        >
+                            About
+                        </StyledNavLink>
+                        <StyledNavLink
+                            exact
+                            to="/career"
+                            activeStyle={{ color: `${themeVars.pink}` }}
+                        >
+                            Career
+                        </StyledNavLink>
+                        <StyledNavLink
+                            exact
+                            to="/cart"
+                            activeStyle={{ color: `${themeVars.pink}` }}
+                        >
+                            Cart (
+                            <span style={{ color: `${themeVars.pink}` }}>
+                                {cartQuantity}
+                            </span>
+                            )
+                        </StyledNavLink>
+                    </LinkContainer>
+                </div>
+                <Catchline>Tech. Lifestyle. Fitness.</Catchline>
+            </Wrapper>
+            <div>
+                {hamburgerTransitions.map(({ item, key, props }) =>
+                    item ? (
+                        <animated.div style={props}>
+                            <Hamburger />
+                        </animated.div>
+                    ) : (
+                        <animated.div style={props}></animated.div>
+                    )
+                )}
+                {cartTransitions.map(({ item, key, props }) =>
+                    item ? (
+                        <animated.div style={props}>
+                            <Cart />
+                        </animated.div>
+                    ) : (
+                        <animated.div style={props}></animated.div>
+                    )
+                )}
             </div>
-            <Catchline>Tech. Lifestyle. Fitness.</Catchline>
-            {hamburgerTransitions.map(({ item, key, props }) =>
-                item ? (
-                    <animated.div style={props}>
-                        <Hamburger />
-                    </animated.div>
-                ) : (
-                    <animated.div style={props}></animated.div>
-                )
-            )}
-            {cartTransitions.map(({ item, key, props }) =>
-                item ? (
-                    <animated.div style={props}>
-                        <Cart />
-                    </animated.div>
-                ) : (
-                    <animated.div style={props}></animated.div>
-                )
-            )}
-        </Wrapper>
+        </>
     );
 };
 

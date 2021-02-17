@@ -39,6 +39,7 @@ export const CheckoutForm = () => {
 
     return (
         <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
+            
             <CardElement
                 options={{
                     style: {

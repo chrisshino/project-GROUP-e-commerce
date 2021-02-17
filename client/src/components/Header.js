@@ -30,7 +30,7 @@ const Wrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* position: fixed; */ 
+    /* position: fixed; */
     z-index: 10;
     background-color: white;
 
@@ -211,9 +211,9 @@ const Header = () => {
             <Wrapper
                 style={{
                     position:
-                        cartToggleState || hamburgerToggleState ? "fixed" : "",
+                        cartToggleState  ? "fixed" : "",
                     overflow:
-                        cartToggleState || hamburgerToggleState ? "hidden" : "",
+                        cartToggleState  ? "hidden" : "",
                 }}
             >
                 <div style={firstRowStyle}>

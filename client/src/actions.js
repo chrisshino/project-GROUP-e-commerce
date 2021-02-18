@@ -32,3 +32,8 @@ export const closeCart = () => ({
     type: 'CLOSE_CART'
 })
 
+export const addTotal = (total) => ({
+    type: 'ADD_TOTAL',
+    total
+})
+

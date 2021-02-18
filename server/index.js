@@ -157,12 +157,3 @@ express()
 
     .listen(PORT, () => console.info(`Listening on port ${PORT}`));
 
-// app.get("/spotify_access_token", async (req, res, next) => {
-//   const clientId = process.env.SPOTIFY_CLIENT_ID;
-//   const clientSecret = process.env.SPOTIFY_SECRET;
-
-//   // We need, annoyingly, a base64-encoded string of our id:secret, for spotify.
-//   // We can use Buffers to do this for us.
-//   const authString = Buffer.from(clientId + ":" + clientSecret).toString(
-//     "base64"
-//   );

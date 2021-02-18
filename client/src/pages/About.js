@@ -75,6 +75,7 @@ const Photo = styled.img`
 
 const SelfIntro = styled.p`
     margin-top: 15px;
+    line-height: 1.5rem;
 
     ${onDesktopMediaQuery} {
         width: 90%;
@@ -189,7 +190,7 @@ const About = () => {
                         <a href="https://github.com/Aya-Sato"><GitHubIcon src={github} alt="GitHub icon" /></a>
                     </div>
                 </PersonalInfoContainer>
-                <SelfIntro style={{marginBottom: "30px"}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</SelfIntro>
+                <SelfIntro style={{marginBottom: "30px"}}>Hello, my name is Aya! With a background in Fine Arts and museum collections management, I have a strong interest in art, design and database management. I am currently enrolled in the full-stack web development program at Concordia University (will graduate in April 2021) and I cannot be any happier to have chosen this path to become a web developer! Being a firm believer in lifelong learning, I am always eager to learn and adopt to new technologies and programming languages.</SelfIntro>
             </ProfileContainer>
         </Wrapper>
         </>

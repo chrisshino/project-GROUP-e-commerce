@@ -23,11 +23,6 @@ const hamburgerStyle = {
     
 };
 
-const innerDivStyle = {
-    // fontSize: "1rem",
-    color: "black",
-    marginTop: "10px",
-};
 
 const BodyPartWrapper = styled.div`
         padding: 1rem;

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 import { onTabletMediaQuery } from "./Responsive";
+import { addTotal } from "../actions";
 
 const Wrapper = styled.div`
     box-sizing: border-box;
@@ -34,7 +36,7 @@ const totalStyle = {
 };
 
 const CartTotal = ({ items }) => {
-    // console.log(items);
+    const dispatch = useDispatch();
     const totalCost = items.reduce((total,item) => {
         return total + Math.round(Number(item.price.replace("$","")) * item.quantity * 100) / 100
     }, 0).toFixed(2)
@@ -43,7 +45,10 @@ const CartTotal = ({ items }) => {
 
     const fullTotal = (Number(totalCost) + Number(tax) + Number(shipping)).toFixed(2)
 
-    
+    useEffect(() => {
+        dispatch(addTotal(fullTotal));
+    }, [fullTotal])
+
     if (items.length > 0) {
         return (
             <Wrapper>

@@ -46,8 +46,9 @@ const CartTotal = ({ items }) => {
     const fullTotal = (Number(totalCost) + Number(tax) + Number(shipping)).toFixed(2)
 
     useEffect(() => {
-        dispatch(addTotal(fullTotal));
-    }, [fullTotal])
+        dispatch(addTotal(fullTotal))
+        
+    }, [fullTotal,dispatch])
 
     if (items.length > 0) {
         return (

@@ -48,7 +48,7 @@ export const CheckoutForm = () => {
                     "http://localhost:4000/stripe/charge",
                     {
                         amount: Number(totalCost) * 100,
-                        id: id
+                        id: id,
                     }
                 );
 
@@ -64,12 +64,11 @@ export const CheckoutForm = () => {
         }
     };
 
-
     return (
         <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
             <h1>Personal Information</h1>
-            <div style={{display: "flex"}}>
-                <input 
+            <div style={{ display: "flex" }}>
+                <input
                     type="text"
                     id="firstName"
                     placeholder="First name"
@@ -77,7 +76,7 @@ export const CheckoutForm = () => {
                         setFirstName(ev.target.value);
                     }}
                 />
-                <input 
+                <input
                     type="text"
                     id="lastName"
                     placeholder="Last name"
@@ -86,7 +85,7 @@ export const CheckoutForm = () => {
                     }}
                 />
             </div>
-            <input 
+            <input
                 type="email"
                 id="email"
                 placeholder="Email"
@@ -95,7 +94,7 @@ export const CheckoutForm = () => {
                 }}
             />
             <h1>Shipping Address</h1>
-            <input 
+            <input
                 type="text"
                 id="streetAddress"
                 placeholder="Your address"
@@ -103,8 +102,8 @@ export const CheckoutForm = () => {
                     setStreetAddress(ev.target.value);
                 }}
             />
-            <div style={{display: "flex"}}>
-                <input 
+            <div style={{ display: "flex" }}>
+                <input
                     type="text"
                     id="city"
                     placeholder="City"
@@ -112,7 +111,7 @@ export const CheckoutForm = () => {
                         setCity(ev.target.value);
                     }}
                 />
-                <input 
+                <input
                     type="text"
                     id="province"
                     placeholder="Province"
@@ -121,8 +120,8 @@ export const CheckoutForm = () => {
                     }}
                 />
             </div>
-            <div style={{display: "flex"}}>   
-                <input 
+            <div style={{ display: "flex" }}>
+                <input
                     type="text"
                     id="postalCode"
                     placeholder="Postal code"
@@ -130,16 +129,21 @@ export const CheckoutForm = () => {
                         setPostalCode(ev.target.value);
                     }}
                 />
-                <input 
-                    type="text"
+                <select
+                    name="country"
                     id="country"
-                    placeholder="Country"
                     onChange={(ev) => {
                         setCountry(ev.target.value);
                     }}
-                />
+                >
+                    <option value="CA">Canada</option>
+                    <option value="US">United States</option>
+                    <option value="JP">Japan</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="FR">France</option>
+                </select>
             </div>
-            
+
             <CardElement
                 options={{
                     style: {

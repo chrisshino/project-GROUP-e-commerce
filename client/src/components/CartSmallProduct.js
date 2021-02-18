@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 import { useHistory } from "react-router-dom";
@@ -9,11 +9,10 @@ import { FiPlus, FiMinus } from "react-icons/fi";
 const CartSmallProduct = ({ item, i }) => {
     let history = useHistory();
     const dispatch = useDispatch();
-    let warning = "normal";
+    
     let disabled = false;
 
     if (item.numInStock <= 0) {
-        warning = "red";
         disabled = true;
     }
 
@@ -26,12 +25,12 @@ const CartSmallProduct = ({ item, i }) => {
     };
 
     const minusOnClick = (item) => {
-        dispatch(subtractFromCart(item))
+        dispatch(subtractFromCart(item));
     };
 
     const deleteOnClick = (item) => {
-        dispatch(removeFromCart(item))
-    }
+        dispatch(removeFromCart(item));
+    };
     return (
         <Item
             key={i}
@@ -40,11 +39,13 @@ const CartSmallProduct = ({ item, i }) => {
                 window.scrollTo(0, 0);
             }}
         >
-            <closeButton
-            onClick={() => {
-                deleteOnClick(item)
-            }}
-            >X</closeButton>
+            <CloseButton
+                onClick={() => {
+                    deleteOnClick(item);
+                }}
+            >
+                X
+            </CloseButton>
             <Img src={item.imageSrc} alt="Product image" />
 
             <ItemDetails>
@@ -53,6 +54,7 @@ const CartSmallProduct = ({ item, i }) => {
                     <Stock>
                         Qty:
                         <PlusMinusButton
+                            disabled={disabled}
                             onClick={() => {
                                 addOnClick(item);
                             }}
@@ -60,7 +62,7 @@ const CartSmallProduct = ({ item, i }) => {
                             <FiPlus />
                         </PlusMinusButton>
                         {item.quantity}
-                        <PlusMinusButton 
+                        <PlusMinusButton
                             onClick={() => {
                                 minusOnClick(item);
                             }}
@@ -91,10 +93,16 @@ const PlusMinusButton = styled.button`
     }
 `;
 
-const closeButton = styled.button`
+const CloseButton = styled.button`
     position: absolute;
-    top:0;
-    left: 0;
+    top: 0;
+    left: -10px;
+    border: none;
+    background: none;
+    outline: none;
+    color: ${themeVars.blue};
+    font-size: 15px;
+
 `;
 
 const Item = styled.div`
@@ -109,7 +117,7 @@ const Item = styled.div`
 
 const Img = styled.img`
     width: 65px;
-    height:65px;
+    height: 65px;
 `;
 
 const ItemDetails = styled.div`
@@ -144,3 +152,4 @@ const Price = styled.p`
     font-size: 1rem;
     font-weight: 700;
 `;
+

@@ -312,20 +312,20 @@ const Header = () => {
             <div>
                 {hamburgerTransitions.map(({ item, key, props }) =>
                     item ? (
-                        <animated.div style={props}>
+                        <animated.div style={props} key={key}>
                             <Hamburger />
                         </animated.div>
                     ) : (
-                        <animated.div style={props}></animated.div>
+                        <animated.div style={props} key={key}></animated.div>
                     )
                 )}
                 {cartTransitions.map(({ item, key, props }) =>
                     item ? (
-                        <animated.div style={props}>
+                        <animated.div style={props} key={key}>
                             <Cart />
                         </animated.div>
                     ) : (
-                        <animated.div style={props}></animated.div>
+                        <animated.div style={props} key={key}></animated.div>
                     )
                 )}
             </div>

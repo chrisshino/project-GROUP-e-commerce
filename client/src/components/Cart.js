@@ -1,7 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 import { getStoreState } from "../reducers/cart-reducer";
 import CartSmallProduct from "./CartSmallProduct";
@@ -43,9 +41,9 @@ const Cart = () => {
 
     return (
         <div style={cartStyle}>
-            {inventoryArray.map((item) => {
+            {inventoryArray.map((item, i) => {
                 return (
-                    <div style={itemWrapper}>
+                    <div style={itemWrapper} key={i}>
                         <CartSmallProduct item={item} />
                     </div>
                 );

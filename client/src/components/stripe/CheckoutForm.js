@@ -3,6 +3,9 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { getStoreState } from "../../reducers/total-reducer";
+import { addBillingDetails } from "../../actions";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
 export const CheckoutForm = () => {
     const [firstName, setFirstName] = useState("");
@@ -12,13 +15,15 @@ export const CheckoutForm = () => {
     const [city, setCity] = useState("");
     const [province, setProvince] = useState("");
     const [postalCode, setPostalCode] = useState("");
-    const [country, setCountry] = useState("");
+    const [country, setCountry] = useState("CA");
 
     const stripe = useStripe();
     const elements = useElements();
+    const history = useHistory();
 
     const totalState = useSelector(getStoreState).totalReducer;
     const totalCost = totalState.totalCost;
+    const dispatch = useDispatch();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -43,6 +48,7 @@ export const CheckoutForm = () => {
         if (!error) {
             console.log("Stripe 23 | token generated!", paymentMethod);
             try {
+                dispatch(addBillingDetails(paymentMethod));
                 const { id } = paymentMethod;
                 const response = await axios.post(
                     "http://localhost:4000/stripe/charge",
@@ -55,6 +61,7 @@ export const CheckoutForm = () => {
                 console.log("Stripe 35 | data", response.data.success);
                 if (response.data.success) {
                     console.log("CheckoutForm.js 25 | payment successful!");
+                    history.push('/confirmation')
                 }
             } catch (error) {
                 console.log("CheckoutForm.js 28 | ", error);
@@ -62,6 +69,7 @@ export const CheckoutForm = () => {
         } else {
             console.log(error.message);
         }
+        
     };
 
     return (

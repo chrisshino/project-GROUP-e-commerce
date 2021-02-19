@@ -37,3 +37,7 @@ export const addTotal = (total) => ({
     total
 })
 
+export const addBillingDetails = (details) => ({
+    type: 'ADD_BILLING_DETAILS',
+    details
+})

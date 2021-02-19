@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart, subtractFromCart } from "../actions";
+import { addToCart, removeFromCart, subtractFromCart, closeCart } from "../actions";
 import { FiPlus, FiMinus } from "react-icons/fi";
 
 const CartSmallProduct = ({ item, i }) => {
@@ -35,6 +35,7 @@ const CartSmallProduct = ({ item, i }) => {
         <Item
             key={i}
             onClick={() => {
+                dispatch(closeCart())
                 history.push(`/product/${item._id}`);
                 window.scrollTo(0, 0);
             }}

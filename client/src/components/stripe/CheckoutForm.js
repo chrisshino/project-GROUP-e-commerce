@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+import { themeVars } from "../GlobalStyles";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -6,6 +8,11 @@ import { getStoreState } from "../../reducers/total-reducer";
 import { addBillingDetails } from "../../actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import {
+    onMobileMediaQuery,
+    onTabletMediaQuery,
+    onDesktopMediaQuery,
+} from "../Responsive";
 
 export const CheckoutForm = () => {
     const [firstName, setFirstName] = useState("");
@@ -16,6 +23,17 @@ export const CheckoutForm = () => {
     const [province, setProvince] = useState("");
     const [postalCode, setPostalCode] = useState("");
     const [country, setCountry] = useState("CA");
+
+    const setToInitialState = () => {
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setStreetAddress("");
+        setCity("");
+        setProvince("");
+        setPostalCode("");
+        setCountry("CA");
+    }
 
     const stripe = useStripe();
     const elements = useElements();
@@ -73,102 +91,315 @@ export const CheckoutForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
-            <h1>Personal Information</h1>
-            <div style={{ display: "flex" }}>
-                <input
-                    type="text"
-                    id="firstName"
-                    placeholder="First name"
+        <Wrapper>
+            <Form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
+                <Heading>Personal Information</Heading>
+                <Row style={{ display: "flex" }}>
+                    <Input
+                        type="text"
+                        id="firstName"
+                        placeholder="First name"
+                        onChange={(ev) => {
+                            setFirstName(ev.target.value);
+                        }}
+                        value={firstName}
+                        required
+                    />
+                    <Input
+                        type="text"
+                        id="lastName"
+                        placeholder="Last name"
+                        onChange={(ev) => {
+                            setLastName(ev.target.value);
+                        }}
+                        value={lastName}
+                        required
+                    />
+                </Row>
+                <Input1
+                    type="email"
+                    id="email"
+                    placeholder="Email"
                     onChange={(ev) => {
-                        setFirstName(ev.target.value);
+                        setEmail(ev.target.value);
                     }}
+                    value={email}
+                    required
                 />
-                <input
+                <Heading>Shipping Address</Heading>
+                <Input1
                     type="text"
-                    id="lastName"
-                    placeholder="Last name"
+                    id="streetAddress"
+                    placeholder="Your address"
                     onChange={(ev) => {
-                        setLastName(ev.target.value);
+                        setStreetAddress(ev.target.value);
                     }}
+                    value={streetAddress}
+                    required
                 />
-            </div>
-            <input
-                type="email"
-                id="email"
-                placeholder="Email"
-                onChange={(ev) => {
-                    setEmail(ev.target.value);
-                }}
-            />
-            <h1>Shipping Address</h1>
-            <input
-                type="text"
-                id="streetAddress"
-                placeholder="Your address"
-                onChange={(ev) => {
-                    setStreetAddress(ev.target.value);
-                }}
-            />
-            <div style={{ display: "flex" }}>
-                <input
-                    type="text"
-                    id="city"
-                    placeholder="City"
-                    onChange={(ev) => {
-                        setCity(ev.target.value);
-                    }}
-                />
-                <input
-                    type="text"
-                    id="province"
-                    placeholder="Province"
-                    onChange={(ev) => {
-                        setProvince(ev.target.value);
-                    }}
-                />
-            </div>
-            <div style={{ display: "flex" }}>
-                <input
-                    type="text"
-                    id="postalCode"
-                    placeholder="Postal code"
-                    onChange={(ev) => {
-                        setPostalCode(ev.target.value);
-                    }}
-                />
-                <select
-                    name="country"
-                    id="country"
-                    onChange={(ev) => {
-                        setCountry(ev.target.value);
-                    }}
-                >
-                    <option value="CA">Canada</option>
-                    <option value="US">United States</option>
-                    <option value="JP">Japan</option>
-                    <option value="GB">United Kingdom</option>
-                    <option value="FR">France</option>
-                </select>
-            </div>
-
-            <CardElement
-                options={{
-                    style: {
-                        base: {
-                            fontSize: "16px",
-                            color: "#424770",
-                            "::placeholder": {
-                                color: "#aab7c4",
+                <Row style={{ display: "flex" }}>
+                    <Input
+                        type="text"
+                        id="city"
+                        placeholder="City"
+                        onChange={(ev) => {
+                            setCity(ev.target.value);
+                        }}
+                        value={city}
+                        required
+                    />
+                    <Input
+                        type="text"
+                        id="province"
+                        placeholder="Province"
+                        onChange={(ev) => {
+                            setProvince(ev.target.value);
+                        }}
+                        value={province}
+                        required
+                    />
+                </Row>
+                <Row style={{ display: "flex" }}>
+                    <Input
+                        type="text"
+                        id="postalCode"
+                        placeholder="Postal code"
+                        onChange={(ev) => {
+                            setPostalCode(ev.target.value);
+                        }}
+                        value={postalCode}
+                        required
+                    />
+                    <Select
+                        name="country"
+                        id="country"
+                        onChange={(ev) => {
+                            setCountry(ev.target.value);
+                        }}
+                        value={country}
+                    >
+                        <option value="CA">Canada</option>
+                        <option value="US">United States</option>
+                        <option value="JP">Japan</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="FR">France</option>
+                    </Select>
+                </Row>
+                <CardElementWrapper>
+                    <Heading style={{textAlign: "center"}}>Credit Card Information</Heading> 
+                    <CardElement
+                        options={{
+                            style: {
+                                base: {
+                                    fontSize: "16px",
+                                    color: "#424770",
+                                    "::placeholder": {
+                                        color: "#aab7c4",
+                                    },
+                                },
+                                invalid: {
+                                    color: "#9e2146",
+                                },
                             },
-                        },
-                        invalid: {
-                            color: "#9e2146",
-                        },
-                    },
-                }}
-            />
-            <button>Place order</button>
-        </form>
+                        }}
+                    />
+                </CardElementWrapper>
+                <ButtonsWrapper>
+                    <Clearbtn
+                        onClick={setToInitialState}
+                    >
+                        Clear form
+                    </Clearbtn>
+                    <OrderBtn>Place order</OrderBtn>
+                </ButtonsWrapper>
+            </Form>
+        </Wrapper>
     );
 };
+
+const Wrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+`;
+
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ${onDesktopMediaQuery} {
+        margin-bottom: 100px;
+    }
+
+    ${onTabletMediaQuery} {
+        width: 70%;
+    }
+
+    ${onMobileMediaQuery} {
+        width: 90%;
+    }
+`;
+
+const Heading = styled.h2`
+    font-size: 22px;
+    color: ${themeVars.midnightGreen};
+    padding: 30px 0 15px 0;
+`;
+
+const Row = styled.div`
+    ${onTabletMediaQuery} {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    ${onMobileMediaQuery} {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+`;
+
+const Input = styled.input`
+    font-size: 17px;
+    padding: 5px 0 5px 15px;
+    margin: 5px 0;
+    border: 1px solid ${themeVars.caribbeanGreen};
+
+    ${onDesktopMediaQuery} {
+        width: 220px;
+        margin: 5px;
+    }
+    
+    ${onTabletMediaQuery} {
+        width: 300px;
+    }
+
+    ${onMobileMediaQuery} {
+        width: 250px;
+    }
+`;
+
+const Input1 = styled.input`
+    font-size: 17px;
+    padding: 5px 0 5px 15px;
+    margin: 5px 0;
+    border: 1px solid ${themeVars.caribbeanGreen};
+
+    ${onDesktopMediaQuery} {
+        width: 468px;
+        margin: 5px;
+    }
+    
+    ${onTabletMediaQuery} {
+        width: 300px;
+    }
+
+    ${onMobileMediaQuery} {
+        width: 250px;
+    }
+`;
+
+const Select = styled.select`
+    font-size: 17px;
+    padding: 5px 0 5px 10px;
+    margin: 5px 0;
+    border: 1px solid ${themeVars.caribbeanGreen};
+    color: gray;
+
+    ${onDesktopMediaQuery} {
+        width: 235px;
+        margin: 5px;
+    }
+
+    ${onTabletMediaQuery} {
+        width: 317px;
+    }
+
+    ${onMobileMediaQuery} {
+        width: 267px;
+    }
+`;
+
+const ButtonsWrapper = styled.div`
+    ${onDesktopMediaQuery} {
+        display: flex;
+        margin-top: 15px;
+    }
+
+    ${onTabletMediaQuery} {
+        display: flex;
+        flex-direction: column;
+    }
+
+    ${onMobileMediaQuery} {
+        display: flex;
+        flex-direction: column;
+    }
+`;
+
+
+const Clearbtn = styled.button`
+    width: 140px;
+    border: 2px solid ${themeVars.midnightGreen};
+    background: ${themeVars.white};
+    outline: none;
+    color: ${themeVars.midnightGreen};
+    font-size: 17px;
+    padding: 10px 0;
+    border-radius: 10px;
+
+    ${onDesktopMediaQuery} {
+        margin: 0 10px;
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+    }
+
+    ${onTabletMediaQuery} {
+        margin-bottom: 20px;
+    }
+
+    ${onMobileMediaQuery} {
+        margin-bottom: 15px;
+    }
+`;
+
+const OrderBtn = styled.button`
+    width: 140px;
+    border: 2px solid ${themeVars.midnightGreen};
+    background: ${themeVars.midnightGreen};
+    outline: none;
+    color: white;
+    font-size: 17px;
+    padding: 10px 0;
+    border-radius: 10px;
+
+    ${onDesktopMediaQuery} {
+        margin: 0 10px;
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+        }
+    }
+
+    ${onTabletMediaQuery} {
+        margin-bottom: 70px;
+    }
+
+    ${onMobileMediaQuery} {
+        margin-bottom: 30px;
+    }
+`;
+
+const CardElementWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 100px;
+    margin-bottom: 30px;
+`;

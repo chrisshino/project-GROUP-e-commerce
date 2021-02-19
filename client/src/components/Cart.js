@@ -63,8 +63,7 @@ const Cart = () => {
     };
     let disabled = false;
 
-
-    if (totalCostState.totalCost === '0.00') {
+    if (totalCostState.totalCost === "0.00") {
         disabled = true;
     }
 
@@ -78,9 +77,11 @@ const Cart = () => {
                 );
             })}
             <CartTotal items={inventoryArray} />
-            <CheckoutButton 
-            style={{opacity: disabled ? `50%` : `100%`}}
-            disabled={disabled} onClick={toCheckoutFunc}>
+            <CheckoutButton
+                style={{ opacity: disabled ? `50%` : `100%` }}
+                disabled={disabled}
+                onClick={toCheckoutFunc}
+            >
                 Checkout
             </CheckoutButton>
         </div>

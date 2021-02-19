@@ -1,6 +1,7 @@
 "use strict";
 const companies = require("./data/companies.json");
 const items = require("./data/items.json");
+const fs = require("fs");
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -109,6 +110,24 @@ express()
         }
     })
 
+    .get("/product/:id", (req, res) => {
+        const getAllItems = items;
+        const id = parseInt(req.params.id, 10);
+        const filteredBodyParts = getAllItems.filter((item) => item._id === id);
+        try {
+            res.status(200).send({
+                status: 200,
+                data: filteredBodyParts,
+                message: "HERE IS YOUR PRODUCTS!",
+            });
+        } catch (e) {
+            res.status(404).send({
+                status: 404,
+                message: e,
+            });
+        }
+    })
+
     .get("/company/:id", (req, res) => {
         const getAllCompanies = companies;
         const id = parseInt(req.params.id, 10);
@@ -155,5 +174,29 @@ express()
         }
     })
 
-    .listen(PORT, () => console.info(`Listening on port ${PORT}`));
+    .patch("/change/:id", (req, res) => {
+        const getAllItems = items;
+        const id = parseInt(req.params.id, 10);
+        const filteredBodyParts = getAllItems.filter((item) => item._id === id);
+        filteredBodyParts[0].numInStock = req.body.numInStock;
+        fs.writeFile(
+            "./data/items.json",
+            JSON.stringify(getAllItems),
+            (result) => {
+                console.log(result);
+                if (result) {
+                    res.status(400).json({
+                        status: 400,
+                        message: "problem updating file",
+                    });
+                } else {
+                    res.status(200).json({
+                        status: 200,
+                        message: "Inventory updated",
+                    });
+                }
+            }
+        );
+    })
 
+    .listen(PORT, () => console.info(`Listening on port ${PORT}`));

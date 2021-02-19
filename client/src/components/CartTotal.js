@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     color: ${themeVars.midnightGreen};
     display: flex;
     flex-direction: column;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 
     ${onTabletMediaQuery} {
         margin-top: 30px;
@@ -72,7 +72,7 @@ const CartTotal = ({ items }) => {
             </Wrapper>
         );
     } else {
-        return <div>Add some items to the cart...</div>;
+        return <div style={{marginBottom:'30px'}}>Add some items to the cart...</div>;
     }
 };
 

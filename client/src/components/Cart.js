@@ -8,34 +8,36 @@ import CartTotal from "./CartTotal";
 import { useHistory } from "react-router";
 import { closeCart } from "../actions";
 import { useDispatch } from "react-redux";
+import {
+    onMobileMediaQuery,
+    onTabletMediaQuery,
+    onDesktopMediaQuery,
+} from "./Responsive";
 
-const cartStyle = {
-    backgroundColor: `${themeVars.white}`,
-    opacity: "0.99",
-    color: `${themeVars.blue}`,
-    width: "100%",
-    // minHeight: "100vh",
-    height: "100%",
-    borderTop: "1px solid black",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "top",
-    alignItems: "center",
-    boxSizing: "border-box",
-    fontSize: "1rem",
-    marginTop: "1.5rem",
-    position: "absolute",
-    top: "70px",
-    overflow: "scroll",
-    // paddingTop: '1rem'
-    paddingTop: "10%",
-};
+const CartWrapper = styled.div`
+    background-color: ${themeVars.white};
+    opacity: 0.99;
+    color: ${themeVars.blue};
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    position: absolute;
+    top: 70px;
+    overflow: scroll;
+    padding-top: 10%;
+`;
 
 const itemWrapper = {
     width: "90%",
     padding: "20px",
     boxSizing: "border-box",
-    // margin: "1rem",
     border: "none",
 };
 
@@ -48,6 +50,23 @@ const CheckoutButton = styled.button`
     font-size: 25px;
     border-radius: 15px;
     margin-bottom: 50px;
+
+    &:active {
+        transform: scale(1.05);
+    }
+
+    &.true {
+        opacity: 0.4;
+    }
+
+    ${onDesktopMediaQuery} {
+            &:hover {
+                &.false {
+                cursor: pointer;
+                transform: scale(1.05);
+            }    
+        }
+    }
 `;
 
 const Cart = () => {
@@ -63,13 +82,12 @@ const Cart = () => {
     };
     let disabled = false;
 
-
     if (totalCostState.totalCost === '0.00') {
         disabled = true;
     }
 
     return (
-        <div style={cartStyle}>
+        <CartWrapper>
             {inventoryArray.map((item, i) => {
                 return (
                     <div style={itemWrapper} key={i}>
@@ -79,11 +97,12 @@ const Cart = () => {
             })}
             <CartTotal items={inventoryArray} />
             <CheckoutButton 
-            style={{opacity: disabled ? `50%` : `100%`}}
+            className={disabled}
+            // style={{opacity: disabled ? `50%` : `100%`}}
             disabled={disabled} onClick={toCheckoutFunc}>
                 Checkout
             </CheckoutButton>
-        </div>
+        </CartWrapper>
     );
 };
 

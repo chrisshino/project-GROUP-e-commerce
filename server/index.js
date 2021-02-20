@@ -57,7 +57,7 @@ express()
 
     .get("/products/:bodypart&:page", (req, res) => {
         const getAllItems = items;
-        const page = req.params.page * 10;
+        const offset = req.params.page * 10;
         const bodyPart = req.params.bodypart.toLowerCase();
         let filteredBodyParts = [];
         if (bodyPart === "all") {
@@ -75,7 +75,7 @@ express()
             );
         }
         const pageCount = Math.ceil(filteredBodyParts.length / 10);
-        const slice = filteredBodyParts.slice(page, page + 10);
+        const slice = filteredBodyParts.slice(offset, offset + 10);
 
         try {
             res.status(200).send({

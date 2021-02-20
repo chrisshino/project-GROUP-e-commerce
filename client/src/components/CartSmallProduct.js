@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 import { useHistory } from "react-router-dom";
@@ -7,13 +7,15 @@ import { addToCart, removeFromCart, subtractFromCart } from "../actions";
 import { FiPlus, FiMinus } from "react-icons/fi";
 
 const CartSmallProduct = ({ item, i }) => {
+    const [zeroStock, setZeroStock] = useState(false);
     let history = useHistory();
     const dispatch = useDispatch();
-    
+
     let disabled = false;
 
     if (item.numInStock <= 0) {
         disabled = true;
+        setZeroStock(true);
     }
 
     let priceByQty =
@@ -31,6 +33,7 @@ const CartSmallProduct = ({ item, i }) => {
     const deleteOnClick = (item) => {
         dispatch(removeFromCart(item));
     };
+
     return (
         <Item
             key={i}
@@ -69,6 +72,7 @@ const CartSmallProduct = ({ item, i }) => {
                         >
                             <FiMinus />
                         </PlusMinusButton>
+                        {zeroStock ? <p>nostock</p> : <p>still</p>}
                     </Stock>
                     <Price>${priceByQty}</Price>
                 </ItemFooter>
@@ -102,7 +106,6 @@ const CloseButton = styled.button`
     outline: none;
     color: ${themeVars.blue};
     font-size: 15px;
-
 `;
 
 const Item = styled.div`
@@ -152,4 +155,3 @@ const Price = styled.p`
     font-size: 1rem;
     font-weight: 700;
 `;
-

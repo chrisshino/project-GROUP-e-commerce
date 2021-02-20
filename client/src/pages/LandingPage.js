@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Hero from "../components/Hero";
 import StoreComponent from "../components/StoreComponent";
 import Top5 from "../components/Top5";
-
+import Auth from '../components/Auth'
 
 const LandingPage = () => {
     return (

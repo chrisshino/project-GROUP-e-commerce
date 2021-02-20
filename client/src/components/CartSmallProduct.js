@@ -3,13 +3,18 @@ import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart, subtractFromCart } from "../actions";
+import {
+    addToCart,
+    removeFromCart,
+    subtractFromCart,
+    closeCart,
+} from "../actions";
 import { FiPlus, FiMinus } from "react-icons/fi";
 
 const CartSmallProduct = ({ item, i }) => {
     let history = useHistory();
     const dispatch = useDispatch();
-    
+
     let disabled = false;
 
     if (item.numInStock <= 0) {
@@ -32,13 +37,7 @@ const CartSmallProduct = ({ item, i }) => {
         dispatch(removeFromCart(item));
     };
     return (
-        <Item
-            key={i}
-            onClick={() => {
-                history.push(`/product/${item._id}`);
-                window.scrollTo(0, 0);
-            }}
-        >
+        <Item key={i}>
             <CloseButton
                 onClick={() => {
                     deleteOnClick(item);
@@ -49,7 +48,15 @@ const CartSmallProduct = ({ item, i }) => {
             <Img src={item.imageSrc} alt="Product image" />
 
             <ItemDetails>
-                <ItemName>{item.name}</ItemName>
+                <ItemName
+                    onClick={() => {
+                        dispatch(closeCart());
+                        history.push(`/product/${item._id}`);
+                        window.scrollTo(0, 0);
+                    }}
+                >
+                    {item.name}
+                </ItemName>
                 <ItemFooter>
                     <Stock>
                         Qty:
@@ -102,7 +109,6 @@ const CloseButton = styled.button`
     outline: none;
     color: ${themeVars.blue};
     font-size: 15px;
-
 `;
 
 const Item = styled.div`
@@ -132,6 +138,9 @@ const ItemDetails = styled.div`
 const ItemName = styled.h5`
     color: ${themeVars.midnightGreen};
     font-size: 1rem;
+    &:hover {
+        cursor: pointer
+    }
 `;
 
 const ItemFooter = styled.div`
@@ -152,4 +161,3 @@ const Price = styled.p`
     font-size: 1rem;
     font-weight: 700;
 `;
-

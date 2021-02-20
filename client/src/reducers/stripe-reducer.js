@@ -5,11 +5,10 @@ export default function stripeReducer(state = initialState, action) {
         case "ADD_BILLING_DETAILS": {
             return {
                 ...state,
-                details: action.details
+                details: action.details,
             };
         }
         default:
             return state;
     }
 }
-

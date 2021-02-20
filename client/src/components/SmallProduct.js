@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { getStoreState } from "../reducers/cart-reducer";
 
 import { addToCart } from "../actions";
 import {
@@ -12,17 +14,20 @@ import {
 } from "./Responsive";
 
 const SmallProduct = ({ item, i }) => {
+    const state = useSelector(getStoreState).cartReducer[item._id];
+
     let history = useHistory();
     const dispatch = useDispatch();
+
     const addToCartFunc = (item, ev) => {
         ev.stopPropagation();
-
         dispatch(addToCart(item));
     };
+
     let warning = "normal";
     let disabled = false;
 
-    if (item.numInStock <= 0) {
+    if ((state && state.numInStock <= 0) || item.numInStock <= 0) {
         warning = "red";
         disabled = true;
     }
@@ -44,7 +49,9 @@ const SmallProduct = ({ item, i }) => {
                 <ItemFooter>
                     <Stock>
                         stock:{" "}
-                        <Span className={warning}>{item.numInStock}</Span>
+                        <Span className={warning}>
+                            {state ? state.numInStock : item.numInStock}
+                        </Span>
                     </Stock>
                     <Add
                         disabled={disabled}

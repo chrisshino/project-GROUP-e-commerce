@@ -17,17 +17,15 @@ import BodyParts from "../components/BodyParts";
 const Store = () => {
     const { bodypart } = useParams();
 
-    const [allProducts, setAllProducts] = useState([]);
     const [Loaded, setLoaded] = useState(false);
     const [pageCount, setPageCount] = useState();
     const [posts, setPosts] = useState();
 
-    useEffect(() => {
-        fetch(`/products/${bodypart}`)
+    const fetchy = (e) => {
+        fetch(`/products/${bodypart}&${e}`)
             .then((res) => res.json())
             .then((data) => {
-                setAllProducts(data.data);
-                setPageCount(Math.ceil(data.data.length / 10));
+                setPageCount(data.pageCount);
                 setPosts(
                     data.data
                         .slice(0, 10)
@@ -37,17 +35,11 @@ const Store = () => {
                 );
                 setLoaded(true);
             });
-    }, [bodypart]);
-
-    const handlePageClick = (e) => {
-        const selectedPage = e.selected;
-        const offset = selectedPage * 10;
-        setPosts(
-            allProducts
-                .slice(offset, offset + 10)
-                .map((item, i) => <SmallProduct key={i} item={item} i={i} />)
-        );
     };
+
+    useEffect(() => {
+        fetchy(0);
+    }, [bodypart]);
 
     return (
         <Main>
@@ -68,7 +60,7 @@ const Store = () => {
                                 pageCount={pageCount}
                                 marginPagesDisplayed={2}
                                 pageRangeDisplayed={5}
-                                onPageChange={handlePageClick}
+                                onPageChange={(e) => fetchy(e.selected)}
                                 containerClassName={"pagination"}
                                 subContainerClassName={"pages pagination"}
                                 activeClassName={"active"}

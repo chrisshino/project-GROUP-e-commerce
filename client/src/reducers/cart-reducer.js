@@ -1,4 +1,4 @@
-import produce from 'immer';
+import produce from "immer";
 const initialState = {};
 
 export default function cartReducer(state = initialState, action) {
@@ -25,6 +25,7 @@ export default function cartReducer(state = initialState, action) {
                 };
             }
         }
+        /* falls through */
         case "SUBTRACT_FROM_CART": {
             if (action.item.quantity > 0) {
                 return {
@@ -36,13 +37,20 @@ export default function cartReducer(state = initialState, action) {
                             Number(state[action.item._id].numInStock) + 1,
                     },
                 };
-            } 
+            }
         }
+        /* falls through */
         case "REMOVE_FROM_CART": {
             return produce(state, (draftState) => {
                 delete draftState[action.item._id];
-            })
+            });
         }
+        /* falls through */
+        case "EMPTY_CART": {
+            console.log(state);
+            return initialState;
+        }
+        /* falls through */
         default:
             return state;
     }

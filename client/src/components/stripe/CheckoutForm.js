@@ -13,6 +13,7 @@ import {
     onTabletMediaQuery,
     onDesktopMediaQuery,
 } from "../Responsive";
+import { emptyCart } from "../../actions";
 
 export const CheckoutForm = () => {
     const [firstName, setFirstName] = useState("");
@@ -33,7 +34,7 @@ export const CheckoutForm = () => {
         setProvince("");
         setPostalCode("");
         setCountry("CA");
-    }
+    };
 
     const stripe = useStripe();
     const elements = useElements();
@@ -90,8 +91,12 @@ export const CheckoutForm = () => {
                                 Accept: "application/json",
                                 "Content-Type": "application/json",
                             },
-                        }).then((res) => console.log(res))
+                        }).then((res) => {
+                            console.log(res);
+                            dispatch(emptyCart());
+                        })
                     );
+                    emptyCart();
                     history.push("/confirmation");
                 }
             } catch (error) {
@@ -198,7 +203,9 @@ export const CheckoutForm = () => {
                     </Select>
                 </Row>
                 <CardElementWrapper>
-                    <Heading style={{textAlign: "center"}}>Credit Card Information</Heading> 
+                    <Heading style={{ textAlign: "center" }}>
+                        Credit Card Information
+                    </Heading>
                     <CardElement
                         options={{
                             style: {
@@ -217,11 +224,7 @@ export const CheckoutForm = () => {
                     />
                 </CardElementWrapper>
                 <ButtonsWrapper>
-                    <Clearbtn
-                        onClick={setToInitialState}
-                    >
-                        Clear form
-                    </Clearbtn>
+                    <Clearbtn onClick={setToInitialState}>Clear form</Clearbtn>
                     <OrderBtn>Place order</OrderBtn>
                 </ButtonsWrapper>
             </Form>
@@ -283,7 +286,7 @@ const Input = styled.input`
         width: 220px;
         margin: 5px;
     }
-    
+
     ${onTabletMediaQuery} {
         width: 300px;
     }
@@ -303,7 +306,7 @@ const Input1 = styled.input`
         width: 468px;
         margin: 5px;
     }
-    
+
     ${onTabletMediaQuery} {
         width: 300px;
     }
@@ -350,7 +353,6 @@ const ButtonsWrapper = styled.div`
         flex-direction: column;
     }
 `;
-
 
 const Clearbtn = styled.button`
     width: 140px;

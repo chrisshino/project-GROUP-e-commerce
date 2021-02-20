@@ -21,6 +21,9 @@ export const CheckoutForm = () => {
     const elements = useElements();
     const history = useHistory();
 
+    const inventoryArray = Object.values(
+        useSelector(getStoreState).cartReducer
+    );
     const totalState = useSelector(getStoreState).totalReducer;
     const totalCost = totalState.totalCost;
     const dispatch = useDispatch();
@@ -61,7 +64,17 @@ export const CheckoutForm = () => {
                 console.log("Stripe 35 | data", response.data.success);
                 if (response.data.success) {
                     console.log("CheckoutForm.js 25 | payment successful!");
-                    history.push('/confirmation')
+                    inventoryArray.forEach((item) =>
+                        fetch(`/change/${item._id}`, {
+                            method: "PATCH",
+                            body: JSON.stringify(item),
+                            headers: {
+                                Accept: "application/json",
+                                "Content-Type": "application/json",
+                            },
+                        }).then((res) => console.log(res))
+                    );
+                    history.push("/confirmation");
                 }
             } catch (error) {
                 console.log("CheckoutForm.js 28 | ", error);
@@ -69,7 +82,6 @@ export const CheckoutForm = () => {
         } else {
             console.log(error.message);
         }
-        
     };
 
     return (

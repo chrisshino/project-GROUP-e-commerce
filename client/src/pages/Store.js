@@ -27,11 +27,9 @@ const Store = () => {
             .then((data) => {
                 setPageCount(data.pageCount);
                 setPosts(
-                    data.data
-                        .slice(0, 10)
-                        .map((item, i) => (
-                            <SmallProduct key={i} item={item} i={i} />
-                        ))
+                    data.data.map((item, i) => (
+                        <SmallProduct key={i} item={item} i={i} />
+                    ))
                 );
                 setLoaded(true);
             });
@@ -45,7 +43,11 @@ const Store = () => {
         <Main>
             <BodyParts />
             <TextWrapper2>
-                <Para2>Products for your {bodypart}</Para2>
+                {bodypart !== "all" ? (
+                    <Para2>Products for your {bodypart}</Para2>
+                ) : (
+                    <Para2>List of all items</Para2>
+                )}
             </TextWrapper2>
             {Loaded ? (
                 <>

@@ -4,38 +4,81 @@ import { themeVars } from "../components/GlobalStyles";
 import SmallProduct from "../components/SmallProduct";
 import { ReactComponent as Loading } from "../assets/Spinner-1s-200px.svg";
 import { useParams } from "react-router";
+import ReactPaginate from "react-paginate";
 
-import { onMobileMediaQuery, onTabletMediaQuery, onDesktopMediaQuery } from "../components/Responsive";
+import {
+    onMobileMediaQuery,
+    onTabletMediaQuery,
+    onDesktopMediaQuery,
+} from "../components/Responsive";
 
 import BodyParts from "../components/BodyParts";
 
 const Store = () => {
     const { bodypart } = useParams();
 
-    const [items, setItems] = useState([]);
+    const [allProducts, setAllProducts] = useState([]);
     const [Loaded, setLoaded] = useState(false);
+    const [pageCount, setPageCount] = useState();
+    const [posts, setPosts] = useState();
 
     useEffect(() => {
         fetch(`/products/${bodypart}`)
             .then((res) => res.json())
             .then((data) => {
-                setItems(data);
+                setAllProducts(data.data);
+                setPageCount(Math.ceil(data.data.length / 10));
+                setPosts(
+                    data.data
+                        .slice(0, 10)
+                        .map((item, i) => (
+                            <SmallProduct key={i} item={item} i={i} />
+                        ))
+                );
                 setLoaded(true);
             });
     }, [bodypart]);
+
+    const handlePageClick = (e) => {
+        const selectedPage = e.selected;
+        const offset = selectedPage * 10;
+        setPosts(
+            allProducts
+                .slice(offset, offset + 10)
+                .map((item, i) => <SmallProduct key={i} item={item} i={i} />)
+        );
+    };
 
     return (
         <Main>
             <BodyParts />
             <TextWrapper2>
                 <Para2>Products for your {bodypart}</Para2>
-            </TextWrapper2>      
+            </TextWrapper2>
             {Loaded ? (
-                <Wrapper>
-                    {items.data.map((item, i) => {
-                        return <SmallProduct key={i} item={item} i={i} />;
-                    })}
-                </Wrapper>
+                <>
+                    <Wrapper>{posts}</Wrapper>
+                    {pageCount > 1 ? (
+                        <>
+                            <ReactPaginate
+                                previousLabel={"previous"}
+                                nextLabel={"next"}
+                                breakLabel={"..."}
+                                breakClassName={"break-me"}
+                                pageCount={pageCount}
+                                marginPagesDisplayed={2}
+                                pageRangeDisplayed={5}
+                                onPageChange={handlePageClick}
+                                containerClassName={"pagination"}
+                                subContainerClassName={"pages pagination"}
+                                activeClassName={"active"}
+                            />
+                            <br />
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                </>
             ) : (
                 <>
                     <Center>
@@ -93,7 +136,7 @@ const TextWrapper2 = styled.div`
     ${onTabletMediaQuery} {
         height: 60px;
     }
-    
+
     ${onMobileMediaQuery} {
         height: 56px;
     }
@@ -106,7 +149,6 @@ const Center = styled.div`
     justify-content: center;
     align-items: center;
 `;
-
 
 const Wrapper = styled.div`
     ${onDesktopMediaQuery} {

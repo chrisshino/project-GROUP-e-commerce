@@ -5,7 +5,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { getStoreState } from "../../reducers/total-reducer";
-import { addBillingDetails } from "../../actions";
+import { addBillingDetails, toggleAlert } from "../../actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import {
@@ -13,6 +13,7 @@ import {
     onTabletMediaQuery,
     onDesktopMediaQuery,
 } from "../Responsive";
+import { FirebaseAuthConsumer } from "@react-firebase/auth";
 
 export const CheckoutForm = () => {
     const [firstName, setFirstName] = useState("");
@@ -33,8 +34,10 @@ export const CheckoutForm = () => {
         setProvince("");
         setPostalCode("");
         setCountry("CA");
-    }
+    };
 
+    const authState = useSelector((state) => state.authReducer.authState);
+    
     const stripe = useStripe();
     const elements = useElements();
     const history = useHistory();
@@ -48,6 +51,14 @@ export const CheckoutForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        if (authState === false) {
+            return (
+                dispatch(toggleAlert()),
+                window.scrollTo({ top: 0, behavior: "smooth" })               
+            )
+        } 
+
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: "card",
             card: elements.getElement(CardElement),
@@ -65,6 +76,7 @@ export const CheckoutForm = () => {
                 phone: null,
             },
         });
+
 
         if (!error) {
             console.log("Stripe 23 | token generated!", paymentMethod);
@@ -101,43 +113,64 @@ export const CheckoutForm = () => {
             console.log(error.message);
         }
     };
-
     return (
         <Wrapper>
             <Form onSubmit={handleSubmit} style={{ maxWidth: 400 }}>
                 <Heading>Personal Information</Heading>
-                <Row style={{ display: "flex" }}>
-                    <Input
-                        type="text"
-                        id="firstName"
-                        placeholder="First name"
-                        onChange={(ev) => {
-                            setFirstName(ev.target.value);
-                        }}
-                        value={firstName}
-                        required
-                    />
-                    <Input
-                        type="text"
-                        id="lastName"
-                        placeholder="Last name"
-                        onChange={(ev) => {
-                            setLastName(ev.target.value);
-                        }}
-                        value={lastName}
-                        required
-                    />
-                </Row>
-                <Input1
-                    type="email"
-                    id="email"
-                    placeholder="Email"
-                    onChange={(ev) => {
-                        setEmail(ev.target.value);
+                <FirebaseAuthConsumer>
+                    {({ user }) => {
+                        const userInfo = user ? user.providerData[0] : "";
+
+                        return (
+                            <>
+                                <Row style={{ display: "flex" }}>
+                                    <Input
+                                        type="text"
+                                        id="firstName"
+                                        placeholder="First name"
+                                        onChange={(ev) => {
+                                            setFirstName(ev.target.value);
+                                        }}
+                                        value={
+                                            userInfo
+                                                ? userInfo.displayName.split(
+                                                      " "
+                                                  )[0]
+                                                : firstName
+                                        }
+                                        required
+                                    />
+                                    <Input
+                                        type="text"
+                                        id="lastName"
+                                        placeholder="Last name"
+                                        onChange={(ev) => {
+                                            setLastName(ev.target.value);
+                                        }}
+                                        value={
+                                            userInfo
+                                                ? userInfo.displayName.split(
+                                                      " "
+                                                  )[1]
+                                                : lastName
+                                        }
+                                        required
+                                    />
+                                </Row>
+                                <Input1
+                                    type="email"
+                                    id="email"
+                                    placeholder="Email"
+                                    onChange={(ev) => {
+                                        setEmail(ev.target.value);
+                                    }}
+                                    value={userInfo ? userInfo.email : email}
+                                    required
+                                />
+                            </>
+                        );
                     }}
-                    value={email}
-                    required
-                />
+                </FirebaseAuthConsumer>
                 <Heading>Shipping Address</Heading>
                 <Input1
                     type="text"
@@ -198,7 +231,9 @@ export const CheckoutForm = () => {
                     </Select>
                 </Row>
                 <CardElementWrapper>
-                    <Heading style={{textAlign: "center"}}>Credit Card Information</Heading> 
+                    <Heading style={{ textAlign: "center" }}>
+                        Credit Card Information
+                    </Heading>
                     <CardElement
                         options={{
                             style: {
@@ -217,11 +252,8 @@ export const CheckoutForm = () => {
                     />
                 </CardElementWrapper>
                 <ButtonsWrapper>
-                    <Clearbtn
-                        onClick={setToInitialState}
-                    >
-                        Clear form
-                    </Clearbtn>
+                    <Clearbtn onClick={setToInitialState}>Clear form</Clearbtn>
+
                     <OrderBtn>Place order</OrderBtn>
                 </ButtonsWrapper>
             </Form>
@@ -283,7 +315,7 @@ const Input = styled.input`
         width: 220px;
         margin: 5px;
     }
-    
+
     ${onTabletMediaQuery} {
         width: 300px;
     }
@@ -303,7 +335,7 @@ const Input1 = styled.input`
         width: 468px;
         margin: 5px;
     }
-    
+
     ${onTabletMediaQuery} {
         width: 300px;
     }
@@ -350,7 +382,6 @@ const ButtonsWrapper = styled.div`
         flex-direction: column;
     }
 `;
-
 
 const Clearbtn = styled.button`
     width: 140px;

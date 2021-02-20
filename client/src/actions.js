@@ -41,3 +41,15 @@ export const addBillingDetails = (details) => ({
     type: 'ADD_BILLING_DETAILS',
     details
 })
+
+export const toggleAuthOn = () => ({
+    type: 'TOGGLE_AUTH_ON'
+})
+
+export const toggleAuthOff = () => ({
+    type: 'TOGGLE_AUTH_OFF'
+})
+
+export const toggleAlert = () => ({
+    type: 'TOGGLE_ALERT'
+})

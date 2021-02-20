@@ -17,8 +17,9 @@ import BigProduct from "./BigProduct";
 import Store from "../pages/Store";
 import About from "../pages/About";
 import Products from "../pages/Products";
-import Form from '../pages/Form'
-import Confirmation from '../pages/Confirmation'
+import Form from '../pages/Form';
+import Confirmation from '../pages/Confirmation';
+import DesktopCart from "../pages/DesktopCart";
 
 import GlobalStyles from "./GlobalStyles";
 const hideOverflow = { display: 'none' };
@@ -62,11 +63,14 @@ function App() {
                         <Route exact path="/error">
                             <Error />
                         </Route>
+                        <Route exact path="/cart">
+                            <DesktopCart />
+                        </Route>
                         <Route exact path="/form">
-                            <Form/>
+                            <Form />
                         </Route>
                         <Route exact path="/confirmation">
-                            <Confirmation/>
+                            <Confirmation />
                         </Route>
                     </Switch>
                     <Footer />

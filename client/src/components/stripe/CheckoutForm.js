@@ -361,10 +361,18 @@ const Clearbtn = styled.button`
 
     ${onTabletMediaQuery} {
         margin-bottom: 20px;
+
+        &:active {
+            transform: scale(1.05);
+        }
     }
 
     ${onMobileMediaQuery} {
         margin-bottom: 15px;
+
+        &:active {
+            transform: scale(1.05);
+        }
     }
 `;
 
@@ -389,10 +397,18 @@ const OrderBtn = styled.button`
 
     ${onTabletMediaQuery} {
         margin-bottom: 70px;
+
+        &:active {
+            transform: scale(1.05);
+        }
     }
 
     ${onMobileMediaQuery} {
         margin-bottom: 30px;
+
+        &:active {
+            transform: scale(1.05);
+        }
     }
 `;
 

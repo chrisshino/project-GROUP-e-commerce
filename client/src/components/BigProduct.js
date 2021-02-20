@@ -131,10 +131,10 @@ const Item = styled.div`
     ${onDesktopMediaQuery} {
         width: 70%;
         justify-content: center;
-        border-top: 15px solid ${themeVars.caribbeanGreen};
-        border-right: 15px solid ${themeVars.yellow};
-        border-bottom: 15px solid ${themeVars.blue};
-        border-left: 15px solid ${themeVars.pink};
+        border-top: 10px solid ${themeVars.caribbeanGreen};
+        border-right: 10px solid ${themeVars.yellow};
+        border-bottom: 10px solid ${themeVars.blue};
+        border-left: 10px solid ${themeVars.pink};
         background-color: ${themeVars.white};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }

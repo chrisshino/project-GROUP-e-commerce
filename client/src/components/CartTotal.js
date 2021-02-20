@@ -32,23 +32,39 @@ const totalStyle = {
     fontWeight: "bold",
     color: `${themeVars.pink}`,
     marginTop: "10px",
-
 };
 
 const CartTotal = ({ items }) => {
     const dispatch = useDispatch();
-    const totalCost = items.reduce((total,item) => {
-        return total + Math.round(Number(item.price.replace("$","")) * item.quantity * 100) / 100
-    }, 0).toFixed(2)
-    const tax = (totalCost * 0.13).toFixed(2)
-    const shipping = (totalCost * 0.05).toFixed(2)
+    const totalCost = items
+        .reduce((total, item) => {
+            return (
+                total +
+                Math.round(
+                    Number(item.price.replace("$", "")) * item.quantity * 100
+                ) /
+                    100
+            );
+        }, 0)
+        .toFixed(2);
+    const tax = (totalCost * 0.13).toFixed(2);
+    let shipping = 0;
 
-    const fullTotal = (Number(totalCost) + Number(tax) + Number(shipping)).toFixed(2)
+    if (totalCost <= 50) {
+        shipping = (totalCost * 0.05).toFixed(2);
+    }
+
+    console.log(shipping);
+
+    const fullTotal = (
+        Number(totalCost) +
+        Number(tax) +
+        Number(shipping)
+    ).toFixed(2);
 
     useEffect(() => {
-        dispatch(addTotal(fullTotal))
-        
-    }, [fullTotal,dispatch])
+        dispatch(addTotal(fullTotal));
+    }, [fullTotal, dispatch]);
 
     if (items.length > 0) {
         return (
@@ -72,7 +88,11 @@ const CartTotal = ({ items }) => {
             </Wrapper>
         );
     } else {
-        return <div style={{marginBottom:'30px'}}>Add some items to the cart...</div>;
+        return (
+            <div style={{ marginBottom: "30px" }}>
+                Add some items to the cart...
+            </div>
+        );
     }
 };
 

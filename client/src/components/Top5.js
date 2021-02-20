@@ -107,6 +107,7 @@ const Wrapper = styled.div`
     ${onDesktopMediaQuery} {
         display: flex;
         justify-content: center;
+        padding: 20px 0;
     }
 
     ${onTabletMediaQuery} {

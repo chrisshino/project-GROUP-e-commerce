@@ -10,6 +10,11 @@ import {
     closeCart,
 } from "../actions";
 import { FiPlus, FiMinus } from "react-icons/fi";
+import {
+    onMobileMediaQuery,
+    onTabletMediaQuery,
+    onDesktopMediaQuery,
+} from "./Responsive";
 
 const CartSmallProduct = ({ item, i }) => {
     let history = useHistory();
@@ -98,17 +103,47 @@ const PlusMinusButton = styled.button`
     &:active {
         transform: scale(1.07);
     }
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
 `;
 
 const CloseButton = styled.button`
     position: absolute;
-    top: 0;
-    left: -10px;
     border: none;
     background: none;
     outline: none;
     color: ${themeVars.blue};
-    font-size: 15px;
+
+    &:active {
+        transform: scale(1.07);
+    }
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        color: ${themeVars.yellow};
+    }
+
+    ${onDesktopMediaQuery} {
+        font-size: 18px;
+        top: -5px;
+        left: -25px;
+    }
+
+    ${onTabletMediaQuery} {
+        font-size: 18px;
+        top: 0;
+        left: -10px;
+    }
+
+    ${onMobileMediaQuery} {
+        font-size: 15px;
+        top: 0;
+        left: -10px;
+    }
 `;
 
 const Item = styled.div`
@@ -137,9 +172,21 @@ const ItemDetails = styled.div`
 
 const ItemName = styled.h5`
     color: ${themeVars.midnightGreen};
-    font-size: 1rem;
+
     &:hover {
         cursor: pointer
+    }
+
+    ${onDesktopMediaQuery} {
+        font-size: 18px;
+    }
+
+    ${onTabletMediaQuery} {
+        font-size: 1rem;
+    }
+
+    ${onMobileMediaQuery} {
+        font-size: 1rem;
     }
 `;
 
@@ -158,6 +205,17 @@ const Stock = styled.p`
 
 const Price = styled.p`
     color: ${themeVars.midnightGreen};
-    font-size: 1rem;
     font-weight: 700;
+
+    ${onDesktopMediaQuery} {
+        font-size: 18px;
+    }
+
+    ${onTabletMediaQuery} {
+        font-size: 1rem;
+    }
+
+    ${onMobileMediaQuery} {
+        font-size: 1rem;
+    }
 `;

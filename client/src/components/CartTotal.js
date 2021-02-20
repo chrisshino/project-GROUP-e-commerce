@@ -2,21 +2,48 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
-import { onTabletMediaQuery } from "./Responsive";
+import { onTabletMediaQuery, onMobileMediaQuery, onDesktopMediaQuery } from "./Responsive";
 import { addTotal } from "../actions";
 
 const Wrapper = styled.div`
     box-sizing: border-box;
     border: 1px solid gray;
-    width: 85%;
     padding: 1rem;
     color: ${themeVars.midnightGreen};
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
 
+    ${onDesktopMediaQuery} {
+        margin-top: 30px;
+        width: 60%;
+    }
+
+
     ${onTabletMediaQuery} {
         margin-top: 30px;
+        width: 80%;
+    }
+
+    ${onMobileMediaQuery} {
+        width: 85%;
+    }
+`;
+
+const CartEmpty = styled.p`
+    ${onDesktopMediaQuery} {
+        font-size: 22px;
+        margin: 50px 0 30px 0;
+    }
+
+    ${onTabletMediaQuery} {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    ${onMobileMediaQuery} {
+        font-size: 18px;
+        margin-bottom: 30px;
     }
 `;
 
@@ -72,7 +99,9 @@ const CartTotal = ({ items }) => {
             </Wrapper>
         );
     } else {
-        return <div style={{marginBottom:'30px'}}>Add some items to the cart...</div>;
+        return (
+            <CartEmpty>Add some items to the cart...</CartEmpty>
+        );
     }
 };
 

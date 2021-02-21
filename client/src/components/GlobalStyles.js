@@ -21,29 +21,32 @@ html {
 }
 
 .pagination {
-    margin: 15px auto;
+    justify-content:center;
+    margin: 0;
+    padding:0;
     display: flex;
     list-style: none;
     outline: none;
+    width: 100%;
 }
 .pagination > .active > a{
-    background-color: #47ccde ;
-    border-color: #47ccde ;
+    background-color: #13A4E7 ;
+    border-color: #13A4E7 ;
     color: #fff;
 }
 .pagination > li > a{
-    border: 1px solid #47ccde ;
+    border: 1px solid #13A4E7 ;
     padding: 5px 10px;
     outline: none;
     cursor: pointer;
 }
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
-    background-color: #47ccde ;
-    border-color: #47ccde;
+    background-color: #13A4E7 ;
+    border-color: #13A4E7;
     outline: none ;
 }
 .pagination > li > a, .pagination > li > span{
-    color: #47ccde
+    color: #13A4E7
 }
 
 .pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{

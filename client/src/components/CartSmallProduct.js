@@ -12,13 +12,15 @@ import {
 import { FiPlus, FiMinus } from "react-icons/fi";
 
 const CartSmallProduct = ({ item, i }) => {
+    // const [zeroStock, setZeroStock] = useState(false);
     let history = useHistory();
     const dispatch = useDispatch();
-
+    let zeroStock = false;
     let disabled = false;
 
     if (item.numInStock <= 0) {
         disabled = true;
+        zeroStock = true;
     }
 
     let priceByQty =
@@ -36,6 +38,7 @@ const CartSmallProduct = ({ item, i }) => {
     const deleteOnClick = (item) => {
         dispatch(removeFromCart(item));
     };
+
     return (
         <Item key={i}>
             <CloseButton
@@ -77,6 +80,7 @@ const CartSmallProduct = ({ item, i }) => {
                             <FiMinus />
                         </PlusMinusButton>
                     </Stock>
+                    {zeroStock ? <p>Max</p> : <></>}
                     <Price>${priceByQty}</Price>
                 </ItemFooter>
             </ItemDetails>

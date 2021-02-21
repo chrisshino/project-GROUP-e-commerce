@@ -47,14 +47,13 @@ const CartTotal = ({ items }) => {
             );
         }, 0)
         .toFixed(2);
+  
     const tax = (totalCost * 0.13).toFixed(2);
     let shipping = 0;
 
     if (totalCost <= 50) {
         shipping = (totalCost * 0.05).toFixed(2);
     }
-
-    console.log(shipping);
 
     const fullTotal = (
         Number(totalCost) +
@@ -73,13 +72,14 @@ const CartTotal = ({ items }) => {
                     <div>Subtotal</div>
                     <div>${totalCost}</div>
                 </div>
-                <div style={subTotalStyle}>
-                    <div>Tax</div>
-                    <div>${tax}</div>
-                </div>
+
                 <div style={subTotalStyle}>
                     <div>Shipping</div>
                     <div>${shipping}</div>
+                </div>
+                <div style={subTotalStyle}>
+                    <div>Tax HST 13%</div>
+                    <div>${tax}</div>
                 </div>
                 <div style={totalStyle}>
                     <div>Total</div>

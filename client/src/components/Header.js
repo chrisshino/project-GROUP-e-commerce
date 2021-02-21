@@ -192,14 +192,14 @@ const Header = () => {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
-        config: {mass:1, tension:500, friction:22}
+        config: { mass: 1, tension: 500, friction: 22 },
     });
 
     const cartTransitions = useTransition(cartToggleState, null, {
         from: { opacity: 0 },
         enter: { opacity: 1 },
         leave: { opacity: 0 },
-        config: {mass:1, tension:500, friction:22}
+        config: { mass: 1, tension: 500, friction: 22 },
     });
 
     let history = useHistory();
@@ -208,7 +208,7 @@ const Header = () => {
         dispatch(closeCart());
         history.push("/");
     };
-    
+
     const cartOnClickFunc = () => {
         if (cartToggleState === false) {
             dispatch(closeHamburger());
@@ -220,12 +220,12 @@ const Header = () => {
 
     const hamburgerOnClickFunc = () => {
         if (hamburgerToggleState === false) {
-            dispatch(toggleHamburger())
-            dispatch(closeCart())
+            dispatch(toggleHamburger());
+            dispatch(closeCart());
         } else {
-            dispatch(toggleHamburger())
+            dispatch(toggleHamburger());
         }
-    }
+    };
 
     return (
         <>
@@ -246,7 +246,7 @@ const Header = () => {
                     <BtnContainer>
                         <HeaderBtn onClick={cartOnClickFunc}>
                             {cartToggleState === false ? (
-                                <div style={{position: "relative"}}>
+                                <div style={{ position: "relative" }}>
                                     <FiShoppingCart style={cartStyleInactive} />
                                     <div style={quantityCircle}>
                                         {cartQuantity}
@@ -275,7 +275,7 @@ const Header = () => {
                         </StyledNavLink>
                         <StyledNavLink
                             exact
-                            to="/products"
+                            to="/products/all"
                             activeStyle={{ color: `${themeVars.pink}` }}
                         >
                             Products

@@ -1,9 +1,5 @@
 import React from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getHamburgerStoreState } from "../reducers/hamburger-reducer";
 import { getCartStoreState } from "../reducers/cart-toggle-reducer";
@@ -16,14 +12,12 @@ import Footer from "./Footer";
 import BigProduct from "./BigProduct";
 import Store from "../pages/Store";
 import About from "../pages/About";
-import Products from "../pages/Products";
-import Form from '../pages/Form';
-import Confirmation from '../pages/Confirmation';
+import Form from "../pages/Form";
+import Confirmation from "../pages/Confirmation";
 import DesktopCart from "../pages/DesktopCart";
 
-
 import GlobalStyles from "./GlobalStyles";
-const hideOverflow = { display: 'none' };
+const hideOverflow = { display: "none" };
 
 function App() {
     const hamburgerState = useSelector(getHamburgerStoreState).hamburgerReducer
@@ -45,9 +39,6 @@ function App() {
                     <Switch>
                         <Route exact path="/">
                             <LandingPage />
-                        </Route>
-                        <Route exact path="/products">
-                            <Products />
                         </Route>
                         <Route path="/products/:bodypart">
                             <Store />

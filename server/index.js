@@ -34,22 +34,6 @@ express()
     .use(cors())
 
     // REST endpoints?
-    .get("/products", (req, res) => {
-        const getAllItems = items;
-        try {
-            res.status(200).send({
-                status: 200,
-                data: getAllItems,
-                message: "HERE ARE YOUR ITEMS!",
-            });
-        } catch (e) {
-            res.status(404).send({
-                status: 404,
-                message: e,
-            });
-        }
-    })
-
     .get("/products/top5", (req, res) => {
         const getAllItems = items;
         const top5 = [];
@@ -71,17 +55,33 @@ express()
         }
     })
 
-    .get("/products/:bodypart", (req, res) => {
+    .get("/products/:bodypart&:page", (req, res) => {
         const getAllItems = items;
+        const offset = req.params.page * 10;
         const bodyPart = req.params.bodypart.toLowerCase();
-        const filteredBodyParts = getAllItems.filter(
-            (item) => item.body_location.toLowerCase() === bodyPart
-        );
+        let filteredBodyParts = [];
+        if (bodyPart === "all") {
+            console.log("all");
+            filteredBodyParts = getAllItems;
+        } else if (bodyPart === "torso") {
+            filteredBodyParts = getAllItems.filter(
+                (item) =>
+                    item.body_location.toLowerCase() === bodyPart ||
+                    item.body_location.toLowerCase() === "chest"
+            );
+        } else {
+            filteredBodyParts = getAllItems.filter(
+                (item) => item.body_location.toLowerCase() === bodyPart
+            );
+        }
+        const pageCount = Math.ceil(filteredBodyParts.length / 10);
+        const slice = filteredBodyParts.slice(offset, offset + 10);
 
         try {
             res.status(200).send({
                 status: 200,
-                data: filteredBodyParts,
+                data: slice,
+                pageCount: pageCount,
                 message: "HERE ARE YOUR BODY PARTS!",
             });
         } catch (e) {
@@ -132,8 +132,6 @@ express()
         const getAllCompanies = companies;
         const id = parseInt(req.params.id, 10);
         const company = getAllCompanies.filter((item) => item._id === id);
-        console.log(company);
-
         try {
             res.status(200).send({
                 status: 200,
@@ -183,7 +181,6 @@ express()
             "./data/items.json",
             JSON.stringify(getAllItems),
             (result) => {
-                console.log(result);
                 if (result) {
                     res.status(400).json({
                         status: 400,

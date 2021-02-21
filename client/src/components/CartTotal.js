@@ -47,9 +47,13 @@ const CartTotal = ({ items }) => {
             );
         }, 0)
         .toFixed(2);
-    const shipping = (totalCost * 0.05).toFixed(2);
+  
+    const tax = (totalCost * 0.13).toFixed(2);
+    let shipping = 0;
 
-    const tax = (totalCost * 1.05 * 0.13).toFixed(2);
+    if (totalCost <= 50) {
+        shipping = (totalCost * 0.05).toFixed(2);
+    }
 
     const fullTotal = (
         Number(totalCost) +

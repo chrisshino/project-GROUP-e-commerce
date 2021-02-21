@@ -4,7 +4,11 @@ import styled from "styled-components";
 import { FiChevronUp } from "react-icons/fi";
 import { LogoWhite } from "./Logo";
 import { themeVars } from "./GlobalStyles";
-import { onDesktopMediaQuery, onMobileMediaQuery, onTabletMediaQuery } from "./Responsive";
+import {
+    onDesktopMediaQuery,
+    onMobileMediaQuery,
+    onTabletMediaQuery,
+} from "./Responsive";
 
 const FooterWrapper = styled.footer`
     display: flex;
@@ -120,44 +124,44 @@ const Footer = () => {
     return (
         <>
             <FooterWrapper>
-                <LogoWrapper 
+                <LogoWrapper
                     onClick={() => {
                         history.push("/");
-                        window.scrollTo(0,0);
+                        window.scrollTo(0, 0);
                     }}
                 >
                     <LogoWhite />
                     <CopyRight>All rights reserved. ©2021</CopyRight>
                 </LogoWrapper>
                 <div>
-                    <StyledBtn1 
+                    <StyledBtn1
                         onClick={() => {
                             history.push("/");
-                            window.scrollTo(0,0);
+                            window.scrollTo(0, 0);
                         }}
                     >
                         Home
                     </StyledBtn1>
-                    <StyledBtn1 
+                    <StyledBtn1
                         onClick={() => {
-                            history.push("/products");
-                            window.scrollTo(0,0);
+                            history.push("/products/all");
+                            window.scrollTo(0, 0);
                         }}
                     >
                         Products
                     </StyledBtn1>
-                    <StyledBtn 
+                    <StyledBtn
                         onClick={() => {
                             history.push("/about");
-                            window.scrollTo(0,0);
+                            window.scrollTo(0, 0);
                         }}
                     >
                         About Us
                     </StyledBtn>
-                    <StyledBtn1 
+                    <StyledBtn1
                         onClick={() => {
                             history.push("/career");
-                            window.scrollTo(0,0);
+                            window.scrollTo(0, 0);
                         }}
                     >
                         Career

@@ -2,21 +2,48 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
-import { onTabletMediaQuery } from "./Responsive";
+import { onTabletMediaQuery, onMobileMediaQuery, onDesktopMediaQuery } from "./Responsive";
 import { addTotal } from "../actions";
 
 const Wrapper = styled.div`
     box-sizing: border-box;
     border: 1px solid gray;
-    width: 85%;
     padding: 1rem;
     color: ${themeVars.midnightGreen};
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
 
+    ${onDesktopMediaQuery} {
+        margin-top: 30px;
+        width: 60%;
+    }
+
+
     ${onTabletMediaQuery} {
         margin-top: 30px;
+        width: 80%;
+    }
+
+    ${onMobileMediaQuery} {
+        width: 85%;
+    }
+`;
+
+const CartEmpty = styled.p`
+    ${onDesktopMediaQuery} {
+        font-size: 22px;
+        margin: 50px 0 30px 0;
+    }
+
+    ${onTabletMediaQuery} {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    ${onMobileMediaQuery} {
+        font-size: 18px;
+        margin-bottom: 30px;
     }
 `;
 
@@ -32,23 +59,38 @@ const totalStyle = {
     fontWeight: "bold",
     color: `${themeVars.pink}`,
     marginTop: "10px",
-
 };
 
 const CartTotal = ({ items }) => {
     const dispatch = useDispatch();
-    const totalCost = items.reduce((total,item) => {
-        return total + Math.round(Number(item.price.replace("$","")) * item.quantity * 100) / 100
-    }, 0).toFixed(2)
-    const tax = (totalCost * 0.13).toFixed(2)
-    const shipping = (totalCost * 0.05).toFixed(2)
+    const totalCost = items
+        .reduce((total, item) => {
+            return (
+                total +
+                Math.round(
+                    Number(item.price.replace("$", "")) * item.quantity * 100
+                ) /
+                    100
+            );
+        }, 0)
+        .toFixed(2);
+  
+    const tax = (totalCost * 0.13).toFixed(2);
+    let shipping = 0;
 
-    const fullTotal = (Number(totalCost) + Number(tax) + Number(shipping)).toFixed(2)
+    if (totalCost <= 50) {
+        shipping = (totalCost * 0.05).toFixed(2);
+    }
+
+    const fullTotal = (
+        Number(totalCost) +
+        Number(tax) +
+        Number(shipping)
+    ).toFixed(2);
 
     useEffect(() => {
-        dispatch(addTotal(fullTotal))
-        
-    }, [fullTotal,dispatch])
+        dispatch(addTotal(fullTotal));
+    }, [fullTotal, dispatch]);
 
     if (items.length > 0) {
         return (
@@ -57,13 +99,14 @@ const CartTotal = ({ items }) => {
                     <div>Subtotal</div>
                     <div>${totalCost}</div>
                 </div>
-                <div style={subTotalStyle}>
-                    <div>Tax</div>
-                    <div>${tax}</div>
-                </div>
+
                 <div style={subTotalStyle}>
                     <div>Shipping</div>
                     <div>${shipping}</div>
+                </div>
+                <div style={subTotalStyle}>
+                    <div>Tax HST 13%</div>
+                    <div>${tax}</div>
                 </div>
                 <div style={totalStyle}>
                     <div>Total</div>
@@ -72,7 +115,10 @@ const CartTotal = ({ items }) => {
             </Wrapper>
         );
     } else {
-        return <div style={{marginBottom:'30px'}}>Add some items to the cart...</div>;
+        return (
+            <CartEmpty>Add some items to the cart...</CartEmpty>
+
+        );
     }
 };
 

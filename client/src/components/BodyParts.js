@@ -13,7 +13,11 @@ import Hand from "../assets/body-parts/waving-hand.svg";
 import RunningShoes from "../assets/body-parts/running-shoes.svg";
 import Torso from "../assets/body-parts/female.svg";
 
-import { onMobileMediaQuery, onTabletMediaQuery, onDesktopMediaQuery } from "../components/Responsive";
+import {
+    onMobileMediaQuery,
+    onTabletMediaQuery,
+    onDesktopMediaQuery,
+} from "../components/Responsive";
 
 const Main = styled.div`
     ${onDesktopMediaQuery} {
@@ -89,93 +93,106 @@ const BodyParts = () => {
     return (
         <Main>
             <BodyPart>
-                <Element 
-                    exact to="/products/Wrist" 
-                    style={{border: `5px solid ${themeVars.caribbeanGreen}`}}
-                    activeStyle={{border: `5px dashed ${themeVars.caribbeanGreen}`}}
+                <Element
+                    exact
+                    to="/products/Wrist"
+                    style={{ border: `5px solid ${themeVars.caribbeanGreen}` }}
+                    activeStyle={{
+                        border: `5px dashed ${themeVars.caribbeanGreen}`,
+                    }}
                 >
                     <Title>Wrist</Title>
                     <Svg src={Band} alt="Wrist products" />
                 </Element>
             </BodyPart>
             <BodyPart>
-                <Element 
-                    exact to="/products/Arms"
-                    style={{border: `5px solid ${themeVars.yellow}`}}
-                    activeStyle={{border: `5px dashed ${themeVars.yellow}`}}
+                <Element
+                    exact
+                    to="/products/Arms"
+                    style={{ border: `5px solid ${themeVars.yellow}` }}
+                    activeStyle={{ border: `5px dashed ${themeVars.yellow}` }}
                 >
                     <Title>Arms</Title>
                     <Svg src={Bodybuilding} alt="Arms  products" />
                 </Element>
             </BodyPart>
             <BodyPart>
-                <Element 
-                    exact to="/products/Head" 
-                    style={{border: `5px solid ${themeVars.blue}`}}
-                    activeStyle={{border: `5px dashed ${themeVars.blue}`}}
+                <Element
+                    exact
+                    to="/products/Head"
+                    style={{ border: `5px solid ${themeVars.blue}` }}
+                    activeStyle={{ border: `5px dashed ${themeVars.blue}` }}
                 >
                     <Title>Head</Title>
                     <Svg src={Manhair} alt="Head products" />
                 </Element>
             </BodyPart>
             <BodyPart>
-                <Element 
-                    exact to="/products/Waist"
-                    style={{border: `5px solid ${themeVars.pink}`}}
-                    activeStyle={{border: `5px dashed ${themeVars.pink}`}}
+                <Element
+                    exact
+                    to="/products/Waist"
+                    style={{ border: `5px solid ${themeVars.pink}` }}
+                    activeStyle={{ border: `5px dashed ${themeVars.pink}` }}
                 >
                     <Title>Waist</Title>
                     <Svg src={Waist} alt="Waist products" />
                 </Element>
             </BodyPart>
             <BodyPart>
-                <Element 
-                    exact to="/products/Hands" 
-                    style={{border: `5px solid ${themeVars.caribbeanGreen}`}}
-                    activeStyle={{border: `5px dashed ${themeVars.caribbeanGreen}`}}
+                <Element
+                    exact
+                    to="/products/Hands"
+                    style={{ border: `5px solid ${themeVars.caribbeanGreen}` }}
+                    activeStyle={{
+                        border: `5px dashed ${themeVars.caribbeanGreen}`,
+                    }}
                 >
                     <Title>Hands</Title>
                     <Svg src={Hand} alt="Hands products" />
                 </Element>
             </BodyPart>
             <BodyPart>
-                <Element 
-                    exact to="/products/Feet"
-                    style={{border: `5px solid ${themeVars.yellow}`}}
-                    activeStyle={{border: `5px dashed ${themeVars.yellow}`}}
+                <Element
+                    exact
+                    to="/products/Feet"
+                    style={{ border: `5px solid ${themeVars.yellow}` }}
+                    activeStyle={{ border: `5px dashed ${themeVars.yellow}` }}
                 >
                     <Title>Feet</Title>
                     <Svg src={RunningShoes} alt="Feet products" />
                 </Element>
             </BodyPart>
             <BodyPart>
-                <Element 
-                    exact to="/products/Neck"
-                    style={{border: `5px solid ${themeVars.blue}`}}
-                    activeStyle={{border: `5px dashed ${themeVars.blue}`}}
+                <Element
+                    exact
+                    to="/products/Neck"
+                    style={{ border: `5px solid ${themeVars.blue}` }}
+                    activeStyle={{ border: `5px dashed ${themeVars.blue}` }}
                 >
                     <Title>Neck</Title>
                     <Svg src={Neck} alt="Neck products" />
                 </Element>
             </BodyPart>
             <BodyPart>
-                <Element 
-                        exact to="/products/Torso"
-                        style={{border: `5px solid ${themeVars.pink}`}}
-                        activeStyle={{border: `5px dashed ${themeVars.pink}`}}
-                    >
+                <Element
+                    exact
+                    to="/products/Torso"
+                    style={{ border: `5px solid ${themeVars.pink}` }}
+                    activeStyle={{ border: `5px dashed ${themeVars.pink}` }}
+                >
                     <Title>Torso</Title>
                     <Svg src={Torso} alt="Torso products" />
                 </Element>
             </BodyPart>
             <BodyPart>
                 <AllProducts
-                    exact to="/products"
+                    exact
+                    to="/products/all"
                     activeStyle={{
                         borderTop: `5px dashed ${themeVars.caribbeanGreen}`,
                         borderRight: `5px dashed ${themeVars.yellow}`,
                         borderBottom: `5px dashed ${themeVars.blue}`,
-                        borderLeft: `5px dashed ${themeVars.pink}`
+                        borderLeft: `5px dashed ${themeVars.pink}`,
                     }}
                 >
                     SHOW ALL
@@ -183,6 +200,6 @@ const BodyParts = () => {
             </BodyPart>
         </Main>
     );
-}
+};
 
 export default BodyParts;

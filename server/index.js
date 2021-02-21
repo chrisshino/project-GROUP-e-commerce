@@ -132,8 +132,6 @@ express()
         const getAllCompanies = companies;
         const id = parseInt(req.params.id, 10);
         const company = getAllCompanies.filter((item) => item._id === id);
-        console.log(company);
-
         try {
             res.status(200).send({
                 status: 200,
@@ -183,7 +181,6 @@ express()
             "./data/items.json",
             JSON.stringify(getAllItems),
             (result) => {
-                console.log(result);
                 if (result) {
                     res.status(400).json({
                         status: 400,

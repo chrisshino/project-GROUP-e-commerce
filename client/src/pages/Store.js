@@ -55,14 +55,16 @@ const Store = () => {
                     {pageCount > 1 ? (
                         <>
                             <ReactPaginate
-                                previousLabel={"previous"}
-                                nextLabel={"next"}
+                                previousLabel={"<"}
+                                nextLabel={">"}
                                 breakLabel={"..."}
                                 breakClassName={"break-me"}
                                 pageCount={pageCount}
                                 marginPagesDisplayed={2}
+
                                 pageRangeDisplayed={5}
                                 onPageChange={(e) => fetchy(e.selected)}
+
                                 containerClassName={"pagination"}
                                 subContainerClassName={"pages pagination"}
                                 activeClassName={"active"}

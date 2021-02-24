@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { themeVars } from "../components/GlobalStyles";
-import { onMobileMediaQuery, onTabletMediaQuery, onDesktopMediaQuery } from "../components/Responsive";
+import {
+    onMobileMediaQuery,
+    onTabletMediaQuery,
+    onDesktopMediaQuery,
+} from "../components/Responsive";
 
 import chris from "../assets/chris.png";
 import zayd from "../assets/zayd.png";
@@ -13,7 +17,7 @@ const Heading = styled.h1`
     background: ${themeVars.midnightGreen};
     color: ${themeVars.white};
     text-align: center;
-    
+
     ${onDesktopMediaQuery} {
         height: 80px;
         font-size: 25px;
@@ -25,7 +29,7 @@ const Heading = styled.h1`
         font-size: 22px;
         line-height: 60px;
     }
-    
+
     ${onMobileMediaQuery} {
         height: 56px;
         font-size: 20px;
@@ -157,44 +161,115 @@ const GitHubIcon = styled.img`
 const About = () => {
     return (
         <>
-        <Heading>Meet our team</Heading>
-        <Wrapper>
-            <ProfileContainer>
-                <Photo style={{border: `5px solid ${themeVars.yellow}`}} src={chris} alt="photo of Chris Shino" />
-                <PersonalInfoContainer>
-                    <Name style={{color: `${themeVars.blue}`}}>Chris Shino</Name>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        <LinkedInLink href="https://www.linkedin.com/in/chrisshino/">in</LinkedInLink>
-                        <a href="https://github.com/chrisshino"><GitHubIcon src={github} alt="GitHub icon" /></a>
-                    </div>
-                </PersonalInfoContainer>
-                <SelfIntro>Hello, my name is Chris! I have a background in automotive business marketing and also run my own personal training business. I have a strong passion for: sales and marketing, fitness, software development and data science. I am currently enrolled in the full-stack web development program at Concordia University (will graduate in April 2021), and have plans on doing my Masters in Data Science afterwards. My goal is to be as well rounded a developer as possible and create some amazing applications in the future.</SelfIntro>
-            </ProfileContainer>
-            <ProfileContainer>
-                <Photo style={{border: `5px solid ${themeVars.blue}`}} src={zayd} alt="photo of Zayd Ben Osmane" />
-                <PersonalInfoContainer>
-                    <Name style={{color: `${themeVars.yellow}`}}>Zayd Ben Osmane</Name>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        <LinkedInLink href="https://www.linkedin.com/in/zaydbenosmane/">in</LinkedInLink>
-                        <a href="https://github.com/ZaydOSM"><GitHubIcon src={github} alt="GitHub icon" /></a>
-                    </div>
-                </PersonalInfoContainer>
-                <SelfIntro>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</SelfIntro>
-            </ProfileContainer>
-            <ProfileContainer>
-                <Photo style={{border: `5px solid ${themeVars.yellow}`}} src={aya} alt="photo of Aya Sato" />
-                <PersonalInfoContainer>
-                    <Name style={{color: `${themeVars.blue}`}}>Aya Sato</Name>
-                    <div style={{display: "flex", justifyContent: "center"}}>
-                        <LinkedInLink href="https://www.linkedin.com/in/aya-sato/">in</LinkedInLink>
-                        <a href="https://github.com/Aya-Sato"><GitHubIcon src={github} alt="GitHub icon" /></a>
-                    </div>
-                </PersonalInfoContainer>
-                <SelfIntro style={{marginBottom: "30px"}}>Hello, my name is Aya! With a background in Fine Arts and museum collections management, I have a strong interest in art, design and database management. I am currently enrolled in the full-stack web development program at Concordia University (will graduate in April 2021) and I cannot be any happier to have chosen this path to become a web developer! Being a firm believer in lifelong learning, I am always eager to learn and adopt to new technologies and programming languages.</SelfIntro>
-            </ProfileContainer>
-        </Wrapper>
+            <Heading>Meet our team</Heading>
+            <Wrapper>
+                <ProfileContainer>
+                    <Photo
+                        style={{ border: `5px solid ${themeVars.yellow}` }}
+                        src={chris}
+                        alt="photo of Chris Shino"
+                    />
+                    <PersonalInfoContainer>
+                        <Name style={{ color: `${themeVars.blue}` }}>
+                            Chris Shino
+                        </Name>
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <LinkedInLink href="https://www.linkedin.com/in/chrisshino/">
+                                in
+                            </LinkedInLink>
+                            <a href="https://github.com/chrisshino">
+                                <GitHubIcon src={github} alt="GitHub icon" />
+                            </a>
+                        </div>
+                    </PersonalInfoContainer>
+                    <SelfIntro>
+                    Hello, my name is Chris! I have a background in automotive business marketing and also run my own personal training business. I have a strong passion for: sales and marketing, fitness, software development and data science. I am currently enrolled in the full-stack web development program at Concordia University (will graduate in April 2021), and have plans on doing my Masters in Data Science afterwards. My goal is to be as well rounded a developer as possible and create some amazing applications in the future.
+                    </SelfIntro>
+                </ProfileContainer>
+                <ProfileContainer>
+                    <Photo
+                        style={{ border: `5px solid ${themeVars.blue}` }}
+                        src={zayd}
+                        alt="photo of Zayd Ben Osmane"
+                    />
+                    <PersonalInfoContainer>
+                        <Name style={{ color: `${themeVars.yellow}` }}>
+                            Zayd Ben Osmane
+                        </Name>
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <LinkedInLink href="https://www.linkedin.com/in/zaydbenosmane/">
+                                in
+                            </LinkedInLink>
+                            <a href="https://github.com/ZaydOSM">
+                                <GitHubIcon src={github} alt="GitHub icon" />
+                            </a>
+                        </div>
+                    </PersonalInfoContainer>
+                    <SelfIntro>
+                        I am not an accountant, I am not a payroll specialist, I
+                        am not a tax expert, I am not a web developer. I am all
+                        that with a bit of craze the good kind of crazy. The
+                        kind of crazy that pushes me to never stop learning, to
+                        devour life, to experience and test all what it has to
+                        offer. The kind that makes me create amazing things. On
+                        my journey, I keep my head up, my calendar on the side
+                        to fit in all my project next to my teacup usually some
+                        Nan Mei Wild Tree Buds. Yep, you guessed it I am also a{" "}
+                        <a href="https://www.teasommelier.com/?page_id=6580">
+                            Certified TAC Tea Sommelier
+                        </a>{" "}
+                        too since 2019.
+                    </SelfIntro>
+                </ProfileContainer>
+                <ProfileContainer>
+                    <Photo
+                        style={{ border: `5px solid ${themeVars.yellow}` }}
+                        src={aya}
+                        alt="photo of Aya Sato"
+                    />
+                    <PersonalInfoContainer>
+                        <Name style={{ color: `${themeVars.blue}` }}>
+                            Aya Sato
+                        </Name>
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <LinkedInLink href="https://www.linkedin.com/in/aya-sato/">
+                                in
+                            </LinkedInLink>
+                            <a href="https://github.com/Aya-Sato">
+                                <GitHubIcon src={github} alt="GitHub icon" />
+                            </a>
+                        </div>
+                    </PersonalInfoContainer>
+                    <SelfIntro style={{ marginBottom: "30px" }}>
+                        Hello, my name is Aya! With a background in Fine Arts
+                        and museum collections management, I have a strong
+                        interest in art, design, and database management. I am
+                        currently enrolled in the full-stack web development
+                        program at Concordia University (will graduate in April
+                        2021) and I cannot be any happier to have chosen this
+                        path to become a web developer! Being a firm believer in
+                        lifelong learning, I am always eager to learn and adopt
+                        to new technologies and programming languages.
+                    </SelfIntro>
+                </ProfileContainer>
+            </Wrapper>
         </>
     );
-}
+};
 
 export default About;

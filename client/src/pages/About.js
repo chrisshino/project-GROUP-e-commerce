@@ -168,7 +168,7 @@ const About = () => {
                         <a href="https://github.com/chrisshino"><GitHubIcon src={github} alt="GitHub icon" /></a>
                     </div>
                 </PersonalInfoContainer>
-                <SelfIntro>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</SelfIntro>
+                <SelfIntro>Hello, my name is Chris! I have a background in automotive business marketing and also run my own personal training business. I have a strong passion for: sales and marketing, fitness, software development and data science. I am currently enrolled in the full-stack web development program at Concordia University (will graduate in April 2021), and have plans on doing my Masters in Data Science afterwards. My goal is to be as well rounded a developer as possible and create some amazing applications in the future.</SelfIntro>
             </ProfileContainer>
             <ProfileContainer>
                 <Photo style={{border: `5px solid ${themeVars.blue}`}} src={zayd} alt="photo of Zayd Ben Osmane" />

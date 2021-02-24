@@ -8,15 +8,21 @@ import "firebase/auth";
 import { FirebaseAuthProvider } from "@react-firebase/auth";
 import { FirebaseDatabaseProvider } from "@react-firebase/database";
 
+const { REACT_APP_apiKey,REACT_APP_authDomain, REACT_APP_projectId, REACT_APP_storageBucket, REACT_APP_messagingSenderId, REACT_APP_appId, REACT_APP_databaseURL } = process.env
+
 const firebaseConfig = {
-    apiKey: "AIzaSyCxvjHoiMEFLL0yJ_o6XQSG5kdzNVn8W6w",
-    authDomain: "wearlab-1fa50.firebaseapp.com",
-    databaseURL: "https://wearlab-1fa50-default-rtdb.firebaseio.com/",
-    projectId: "wearlab-1fa50",
-    storageBucket: "wearlab-1fa50.appspot.com",
-    messagingSenderId: "1061793664801",
-    appId: "1:1061793664801:web:4c02efd00082eec7e3f860",
+    apiKey: REACT_APP_apiKey,
+    authDomain: REACT_APP_authDomain,
+    databaseURL: REACT_APP_databaseURL,
+    projectId: REACT_APP_projectId,
+    storageBucket: REACT_APP_storageBucket,
+    messagingSenderId: REACT_APP_messagingSenderId,
+    appId: REACT_APP_appId,
 };
+
+
+
+
 
 const store = configureStore();
 
